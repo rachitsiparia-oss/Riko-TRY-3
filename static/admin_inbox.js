@@ -422,8 +422,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Simple deep comparison to check if items changed before rendering
-            const prevSerialized = JSON.stringify(state.reservations.map(r => ({ id: r.id, status: r.status, is_read: r.is_read })));
-            const newSerialized = JSON.stringify((data.items || []).map(r => ({ id: r.id, status: r.status, is_read: r.is_read })));
+            const prevSerialized = JSON.stringify(state.reservations.map(r => ({ id: r.id, status: r.status })));
+            const newSerialized = JSON.stringify((data.items || []).map(r => ({ id: r.id, status: r.status })));
 
             if (prevSerialized !== newSerialized || data.total_items !== state.totalItems) {
                 state.reservations = data.items;
@@ -537,9 +537,9 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = '';
         items.forEach(item => {
             const isActive = state.selectedId === item.id ? 'active' : '';
-            const isUnread = item.is_read === 0 ? 'unread' : '';
-            const displayTime = formatCompactTime(item.created_at);
-            const statusClass = item.status.toLowerCase();
+            const isUnread = '';
+            const displayTime = item.time || '';
+            const statusClass = String(item.status || 'New').toLowerCase();
             
             // Format guest count string
             const guestsStr = item.guests === 1 ? '1 Guest' : `${item.guests} Guests`;
@@ -547,7 +547,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             html += `
                 <div class="inbox-item ${isActive} ${isUnread}" data-id="${item.id}">
-                    ${item.is_read === 0 ? '<div class="unread-dot"></div>' : ''}
                     <div class="inbox-item-header">
                         <span class="inbox-item-name">${escapeHtml(item.name)}</span>
                         <span class="inbox-item-time">${displayTime}</span>
@@ -555,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="inbox-item-sub">
                         <div class="inbox-item-details">
                             <span class="inbox-item-guests-count">${guestsStr}</span>
-                            <span class="inbox-item-date-text">&bull; ${dateStr} at ${item.time}</span>
+                            <span class="inbox-item-date-text">&bull; ${dateStr} at ${escapeHtml(item.time || '')}</span>
                         </div>
                         <span class="details-status-badge status-${statusClass}" style="padding: 2px 6px; font-size: 0.6rem; border-radius: 0;">${item.status}</span>
                     </div>
@@ -629,12 +628,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderReservationDetails(data.item);
                 detailsContainer.style.opacity = '1';
                 
-                // Update local list cache read status without reload
-                const idx = state.reservations.findIndex(x => x.id === id);
-                if (idx !== -1) {
-                    state.reservations[idx].is_read = 1;
-                }
-                
                 // Reload global count
                 loadGlobalCounters();
                 loadInboxCountersOnly();
@@ -650,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Name and Initials
         document.getElementById('detailsGuestName').textContent = item.name;
         document.getElementById('detailsInitials').textContent = getInitials(item.name);
-        document.getElementById('detailsSubmissionTime').textContent = formatDateTime(item.created_at);
+        document.getElementById('detailsSubmissionTime').textContent = `${formatDateLabel(item.date)} at ${item.time || '--'}`;
 
         // Core fields
         document.getElementById('detailsPhone').innerHTML = `<a href="tel:${item.phone}" style="color:var(--gold); text-decoration:none;">${item.phone}</a>`;

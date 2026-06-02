@@ -721,7 +721,6 @@ def check_duplicate_reservation(phone, date, time):
 
 def mark_reservation_read(item_id, is_read=1):
     if use_supabase():
-        _supabase_request('PATCH', 'reservations', f"id=eq.{int(item_id)}", payload={'is_read': int(is_read)})
         return True
 
     ensure_reservation_schema()

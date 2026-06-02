@@ -882,7 +882,6 @@ def api_create_reservation():
             "details": str(exc)
         }), 500
 
-    created_at = datetime.datetime.now().isoformat()
     res_data = {
         "name": name,
         "phone": phone,
@@ -890,9 +889,7 @@ def api_create_reservation():
         "date": date,
         "time": time_val,
         "special_request": special_request,
-        "status": "New",
-        "is_read": 0,
-        "created_at": created_at
+        "status": "New"
     }
 
     try:
@@ -991,19 +988,6 @@ def api_get_reservation_detail(res_id):
     if not res:
         return jsonify({"success": False, "error": "Reservation not found."}), 404
         
-    if res.get('is_read') == 0:
-        try:
-            db.mark_reservation_read(res_id, 1)
-        except Exception as exc:
-            print(f"Reservation read-state update skipped for {res_id}: {exc}")
-        res['is_read'] = 1
-        
-        # Broadcast that the reservation was read
-        announcer.announce(json.dumps({
-            "type": "reservation_update",
-            "item": res
-        }))
-
     return jsonify({"success": True, "item": res})
 
 @app.route('/api/reservations/<int:res_id>', methods=['PATCH'])
@@ -1037,9 +1021,6 @@ def api_update_reservation(res_id):
                 db.insert_reservation_log(res_id, "Status Update", prev_status, new_status)
             except Exception as exc:
                 print(f"Reservation status log insert failed for {res_id}: {exc}")
-
-    if 'is_read' in data:
-        update_data['is_read'] = int(data['is_read'])
 
     if not update_data:
         return jsonify({"success": True, "item": res})
