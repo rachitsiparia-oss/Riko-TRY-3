@@ -1,0 +1,133 @@
+{
+  "menu_items": {
+    "label": "Menu Items",
+    "table_name": "menu_items",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Dish Name",
+        "type": "text",
+        "required": true,
+        "show_in_table": true
+      },
+      {
+        "name": "slug",
+        "label": "Slug",
+        "type": "slug",
+        "source": "name",
+        "required": true,
+        "show_in_table": true,
+        "readonly": true
+      },
+      {
+        "name": "description",
+        "label": "Description",
+        "type": "longtext",
+        "required": true,
+        "show_in_table": true
+      },
+      {
+        "name": "price",
+        "label": "Price (₹)",
+        "type": "number",
+        "required": true,
+        "show_in_table": true
+      },
+      {
+        "name": "category",
+        "label": "Category",
+        "type": "select",
+        "options": [
+          "For One",
+          "Salads",
+          "Cold Dishes",
+          "Hot Dishes",
+          "Main",
+          "Desserts",
+          "Beverages"
+        ],
+        "required": true,
+        "show_in_table": true
+      },
+      {
+        "name": "image_url",
+        "label": "Dish Image",
+        "type": "image",
+        "required": true,
+        "show_in_table": true
+      },
+      {
+        "name": "status",
+        "label": "Status",
+        "type": "select",
+        "options": ["Published", "Draft"],
+        "default": "Published",
+        "required": true,
+        "show_in_table": true
+      }
+    ]
+  },
+  "reservations": {
+    "label": "Reservations",
+    "table_name": "reservations",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Full Name",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "phone",
+        "label": "Phone Number",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "guests",
+        "label": "Guest Count",
+        "type": "number",
+        "required": true
+      },
+      {
+        "name": "date",
+        "label": "Desired Date",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "time",
+        "label": "Desired Time",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "special_request",
+        "label": "Special Request",
+        "type": "longtext",
+        "required": false
+      },
+      {
+        "name": "status",
+        "label": "Status",
+        "type": "select",
+        "options": ["New", "Confirmed", "Pending", "Completed", "Cancelled"],
+        "default": "New",
+        "required": true
+      },
+      {
+        "name": "is_read",
+        "label": "Is Read",
+        "type": "number",
+        "default": 0,
+        "required": true
+      },
+      {
+        "name": "created_at",
+        "label": "Created At",
+        "type": "text",
+        "required": true
+      }
+    ]
+  }
+}

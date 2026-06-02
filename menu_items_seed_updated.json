@@ -1,0 +1,782 @@
+[
+    {
+        "name": "Bomba de Choclo",
+        "slug": "bomba-de-choclo",
+        "description": "A delicate custard of sweet Peruvian corn with aged cheese & crisp shell",
+        "price": 289,
+        "category": "For One",
+        "image_url": "assets/bomba_de_choclo.png",
+        "status": "Published",
+        "subtitle": "Corn Custard Bomb"
+    },
+    {
+        "name": "Papa Cremosas",
+        "slug": "papa-cremosas",
+        "description": "Crispy golden potato crowned with tangy sour cream and beetroot caviar pearls",
+        "price": 289,
+        "category": "For One",
+        "image_url": "assets/papa_cremosas.png",
+        "status": "Published",
+        "subtitle": "Potato, Sour Cream & Beetroot Caviar"
+    },
+    {
+        "name": "Elote Picante",
+        "slug": "elote-picante",
+        "description": "Smoky grilled corn glazed with spiced garlic butter",
+        "price": 329,
+        "category": "For One",
+        "image_url": "assets/elote_picante.png",
+        "status": "Published",
+        "subtitle": "Charred Butter Garlic Corn"
+    },
+    {
+        "name": "Coliflor Crujiente",
+        "slug": "coliflor-crujiente",
+        "description": "Golden Cauliflower florets with chermoula and smoky romesco sauce",
+        "price": 389,
+        "category": "For One",
+        "image_url": "assets/coliflor_crujiente.png",
+        "status": "Published",
+        "subtitle": "Crispy Cauliflower with Sauces"
+    },
+    {
+        "name": "Patatas Bravas Cl\u00e1sicas",
+        "slug": "patatas-bravas-cl-sicas",
+        "description": "Crispy potatoes with smoked romesco and garlic aioli",
+        "price": 389,
+        "category": "For One",
+        "image_url": "assets/patatas_bravas_clasicas.png",
+        "status": "Published",
+        "subtitle": "Golden Spanish Potatoes"
+    },
+    {
+        "name": "Papas Umami",
+        "slug": "papas-umami",
+        "description": "Crispy golden fries tossed with parmesan, seaweed, truffle oil & spring onions",
+        "price": 429,
+        "category": "For One",
+        "image_url": "assets/papas_umami.png",
+        "status": "Published",
+        "subtitle": "Parmesan Truffle Fries"
+    },
+    {
+        "name": "Croquetas de Queso Fresco",
+        "slug": "croquetas-de-queso-fresco",
+        "description": "Golden-fried bites of soft cottage cheese blended with spices",
+        "price": 289,
+        "category": "For One",
+        "image_url": "assets/croquetas_de_queso_fresco.png",
+        "status": "Published",
+        "subtitle": "Cottage Cheese Croquettes"
+    },
+    {
+        "name": "Bombas Andinas",
+        "slug": "bombas-andinas",
+        "description": "Golden empanadas packed with earthy mushrooms and creamy Peruvian cheese",
+        "price": 589,
+        "category": "For One",
+        "image_url": "assets/bombas_andinas.png",
+        "status": "Published",
+        "subtitle": "Mushroom & Cheese Empanada"
+    },
+    {
+        "name": "Verde Bombas",
+        "slug": "verde-bombas",
+        "description": "Golden empanadas filled with tender spinach and creamy Peruvian cheese",
+        "price": 329,
+        "category": "For One",
+        "image_url": "assets/verde_bombas.png",
+        "status": "Published",
+        "subtitle": "Spinach & Cheese Empanada"
+    },
+    {
+        "name": "Queso Bombas",
+        "slug": "queso-bombas",
+        "description": "Crispy empanadas filled with creamy cheese and tender chicken",
+        "price": 529,
+        "category": "For One",
+        "image_url": "assets/queso_bombas.png",
+        "status": "Published",
+        "subtitle": "Cheese & Chicken Empanada"
+    },
+    {
+        "name": "Empanada Criolla",
+        "slug": "empanada-criolla",
+        "description": "Golden flaky pastry filled with cinnamon-spiced minced meat",
+        "price": 589,
+        "category": "For One",
+        "image_url": "assets/empanada_criolla.png",
+        "status": "Published",
+        "subtitle": "Spiced Minced Lamb Meat Empanada"
+    },
+    {
+        "name": "Sopa de Garbanso",
+        "slug": "sopa-de-garbanso",
+        "description": "Lentil Soup",
+        "price": 329,
+        "category": "For One",
+        "image_url": "assets/sopa_de_garbanso.png",
+        "status": "Published",
+        "subtitle": "Lentil Soup"
+    },
+    {
+        "name": "Ensalada Mercado Verde",
+        "slug": "ensalada-mercado-verde",
+        "description": "Seasonal lettuces layered with avocado, radish, carrot, and beetroot, gently dressed in lime vinaigrette and fresh herbs",
+        "price": 489,
+        "category": "Salads",
+        "image_url": "assets/ensalada_mercado.png",
+        "status": "Published",
+        "subtitle": "Big Market Salad"
+    },
+    {
+        "name": "Sol de Maiz",
+        "slug": "sol-de-maiz",
+        "description": "Charred corn with toasted kernels, onions and red chili",
+        "price": 389,
+        "category": "Salads",
+        "image_url": "assets/sol_de_maiz.png",
+        "status": "Published",
+        "subtitle": "Sun-Kissed Corn Salad"
+    },
+    {
+        "name": "Pomelo Fresco",
+        "slug": "pomelo-fresco",
+        "description": "Refreshing salad of fresh pomelo wedges, mixed greens, avocado, and toasted pumpkin seeds, dressed in light lime-honey vinaigrette",
+        "price": 389,
+        "category": "Salads",
+        "image_url": "assets/ensalada_camaron_pomelo.png",
+        "status": "Published",
+        "subtitle": "Fresh Citrus Salad"
+    },
+    {
+        "name": "Ensalad de Camar\u00f3n y Pomelo",
+        "slug": "ensalad-de-camar-n-y-pomelo",
+        "description": "Mixed lettuces with pomelo, roasted coconut, blueberry, and shrimp in a soy-fish sauce vinaigrette",
+        "price": 589,
+        "category": "Salads",
+        "image_url": "assets/ensalada_camaron_pomelo.png",
+        "status": "Published",
+        "subtitle": "Pomelo Shrimp Salad"
+    },
+    {
+        "name": "Pepino Picante Crunch",
+        "slug": "pepino-picante-crunch",
+        "description": "Cucumber ribbons with red chili, lime zest and toasted sesame",
+        "price": 295,
+        "category": "Salads",
+        "image_url": "assets/pepino_picante_crunch.png",
+        "status": "Published",
+        "subtitle": "Spicy Cucumber Crunch"
+    },
+    {
+        "name": "Ceviche de Sandia",
+        "slug": "ceviche-de-sandia",
+        "description": "Watermelon cured in lime with native chili, coriander stem, and sea salt",
+        "price": 549,
+        "category": "Cold Dishes",
+        "image_url": "assets/ceviche_de_sandia.png",
+        "status": "Published",
+        "subtitle": "Watermelon Ceviche"
+    },
+    {
+        "name": "Ceviche Estrella",
+        "slug": "ceviche-estrella",
+        "description": "Lime-cured dragon fruit and muskmelon, finished with pickled onion and caviar pearls",
+        "price": 389,
+        "category": "Cold Dishes",
+        "image_url": "assets/ceviche_estrella.png",
+        "status": "Published",
+        "subtitle": "Dragon Fruit & Muskmelon Ceviche with Caviar"
+    },
+    {
+        "name": "Ceviche Cl\u00e1sico",
+        "slug": "ceviche-cl-sico",
+        "description": "Fresh seabass cured in lime juice, finished with aji amarillo or leche de tigre, red onion, chilli and herbs",
+        "price": 589,
+        "category": "Cold Dishes",
+        "image_url": "assets/ceviche_clasico.png",
+        "status": "Published",
+        "subtitle": "Classic Seabass Ceviche"
+    },
+    {
+        "name": "Ceviche de Mango y Maracuya",
+        "slug": "ceviche-de-mango-y-maracuya",
+        "description": "Shrimp marinated in mango and passion fruit with herbs and chili",
+        "price": 689,
+        "category": "Cold Dishes",
+        "image_url": "assets/ceviche_de_mango_maracuya.png",
+        "status": "Published",
+        "subtitle": "Mango & Passion Fruit Shrimp Ceviche"
+    },
+    {
+        "name": "Ceviche Mixto Rojo",
+        "slug": "ceviche-mixto-rojo",
+        "description": "Octopus, scallops, calamari & shrimp in red aji panca leche de tigre",
+        "price": 589,
+        "category": "Cold Dishes",
+        "image_url": "assets/ceviche_mixto_rojo.png",
+        "status": "Published",
+        "subtitle": "Mixed Red Seafood Ceviche"
+    },
+    {
+        "name": "Ceviche Fresca",
+        "slug": "ceviche-fresca",
+        "description": "Layers of creamy Peruvian potato and fresh garden vegetables, gently seasoned with lime aji amarillo",
+        "price": 429,
+        "category": "Cold Dishes",
+        "image_url": "assets/ceviche_fresca.png",
+        "status": "Published",
+        "subtitle": "Fresh Causa"
+    },
+    {
+        "name": "Causa de Pollo y Huevo",
+        "slug": "causa-de-pollo-y-huevo",
+        "description": "Mashed yellow potato layered with chicken and egg, finished with lime and aj\u00ed amarillo mayo.",
+        "price": 489,
+        "category": "Cold Dishes",
+        "image_url": "assets/causa_de_pollo_y_huevo.png",
+        "status": "Published",
+        "subtitle": "Chicken & Egg Causa"
+    },
+    {
+        "name": "Causa de At\u00fan",
+        "slug": "causa-de-at-n",
+        "description": "Mashed yellow potato layered with tuna and avocado, finished with lime and aj\u00ed amarillo mayo",
+        "price": 589,
+        "category": "Cold Dishes",
+        "image_url": "assets/causa_de_atun.png",
+        "status": "Published",
+        "subtitle": "Tuna Causa"
+    },
+    {
+        "name": "Tartare Andino",
+        "slug": "tartare-andino",
+        "description": "Beetroot and avocado layered and finished with citrus dressing and fresh herbs",
+        "price": 289,
+        "category": "Cold Dishes",
+        "image_url": "assets/tartare_andino.png",
+        "status": "Published",
+        "subtitle": "Beetroot & Avocado Tartare"
+    },
+    {
+        "name": "Tamal de Yaca",
+        "slug": "tamal-de-yaca",
+        "description": "Soft corn masa filled with tender jackfruit and steamed in corn husk",
+        "price": 489,
+        "category": "Cold Dishes",
+        "image_url": "assets/tamal_de_yaca.png",
+        "status": "Published",
+        "subtitle": "Jackfruit Tamale"
+    },
+    {
+        "name": "Tamal de Cordero",
+        "slug": "tamal-de-cordero",
+        "description": "Soft corn tamale filled with spiced lamb, steamed in a banana leaf",
+        "price": 529,
+        "category": "Cold Dishes",
+        "image_url": "assets/tamal_de_cordero.png",
+        "status": "Published",
+        "subtitle": "Lamb Tamale"
+    },
+    {
+        "name": "Tostada Tropical",
+        "slug": "tostada-tropical",
+        "description": "Crisp toast topped with fresh mango, creamy avocado and spicy marinated tofu",
+        "price": 669,
+        "category": "Cold Dishes",
+        "image_url": "assets/tostada_tropical.png",
+        "status": "Published",
+        "subtitle": "Mango & Avocado Toast with Chilli Tofu"
+    },
+    {
+        "name": "Tostada de At\u00fan",
+        "slug": "tostada-de-at-n",
+        "description": "Toasted bread topped with marinated spicy tuna, creamy mayo and fresh herbs",
+        "price": 729,
+        "category": "Cold Dishes",
+        "image_url": "assets/tostada_de_atun.png",
+        "status": "Published",
+        "subtitle": "Spicy Tuna Toast"
+    },
+    {
+        "name": "Calamar Crocante",
+        "slug": "calamar-crocante",
+        "description": "Fried calamari rings served with aioli dip",
+        "price": 589,
+        "category": "Hot Dishes",
+        "image_url": "assets/calamar_crocante.png",
+        "status": "Published",
+        "subtitle": "Crispy Calamari"
+    },
+    {
+        "name": "Brochetas de Pollo",
+        "slug": "brochetas-de-pollo",
+        "description": "Chicken skewers marinated in Peruvian spices and chargrilled for rich flavour and tenderness",
+        "price": 679,
+        "category": "Hot Dishes",
+        "image_url": "assets/brochetas_de_pollo.png",
+        "status": "Published",
+        "subtitle": "Chicken Skewers"
+    },
+    {
+        "name": "Pollo a la Brasa",
+        "slug": "pollo-a-la-brasa",
+        "description": "Half rotisserie chicken marinated with traditional Peruvian spices and grilled over open flame",
+        "price": 789,
+        "category": "Hot Dishes",
+        "image_url": "assets/pollo_a_la_brasa.png",
+        "status": "Published",
+        "subtitle": "Peruvian Rotisserie Chicken"
+    },
+    {
+        "name": "Alitas Picantes",
+        "slug": "alitas-picantes",
+        "description": "Crispy wings tossed in fiery aji glaze",
+        "price": 529,
+        "category": "Hot Dishes",
+        "image_url": "assets/alitas_picantes.png",
+        "status": "Published",
+        "subtitle": "Cusco Fire Wings"
+    },
+    {
+        "name": "Costillas del Fuego",
+        "slug": "costillas-del-fuego",
+        "description": "Tender lamb ribs with a refined sweet-and-spicy glaze",
+        "price": 1289,
+        "category": "Hot Dishes",
+        "image_url": "assets/costillas_del_fuego.png",
+        "status": "Published",
+        "subtitle": "Sticky Glazed Lamb Ribs"
+    },
+    {
+        "name": "Gambas a la Brasa",
+        "slug": "gambas-a-la-brasa",
+        "description": "Succulent tiger prawns grilled and dressed with fresh salsa",
+        "price": 989,
+        "category": "Hot Dishes",
+        "image_url": "assets/gambas_a_la_brasa.png",
+        "status": "Published",
+        "subtitle": "Grilled Tiger Prawns"
+    },
+    {
+        "name": "Costillas Andinas",
+        "slug": "costillas-andinas",
+        "description": "Charred lamb chops served with vibrant chimichurri and a smoky burnt cauliflower pure\u00e9",
+        "price": 1289,
+        "category": "Hot Dishes",
+        "image_url": "assets/costillas.png",
+        "status": "Published",
+        "subtitle": "Andean Lamb Chops"
+    },
+    {
+        "name": "Arroz bomba (Chicken)",
+        "slug": "arroz-bomba-chicken",
+        "description": "Saffron-infused bomba rice slow-cooked with tender chicken, layered with smoky aji amarillo paste and finished with fresh herbs",
+        "price": 689,
+        "category": "Main",
+        "image_url": "assets/arroz_bomba_chicken.png",
+        "status": "Published",
+        "subtitle": "Chicken Bomba Rice"
+    },
+    {
+        "name": "Arroz bomba (Seafood)",
+        "slug": "arroz-bomba-seafood",
+        "description": "Saffron-infused bomba rice slow-cooked with fresh seabass, layered with smoky aji amarillo paste and finished with fresh herbs",
+        "price": 898,
+        "category": "Main",
+        "image_url": "assets/arroz_bomba_seafood.png",
+        "status": "Published",
+        "subtitle": "Seabass Bomba Rice"
+    },
+    {
+        "name": "Arroz bomba (Tofu)",
+        "slug": "arroz-bomba-tofu",
+        "description": "Saffron-infused bomba rice slow-cooked with tofu, layered with smoky aji amarillo paste and finished with fresh herbs",
+        "price": 689,
+        "category": "Main",
+        "image_url": "assets/arroz_bomba_tofu.png",
+        "status": "Published",
+        "subtitle": "Tofu Bomba Rice"
+    },
+    {
+        "name": "Arroz bomba (Veg)",
+        "slug": "arroz-bomba-veg",
+        "description": "Saffron-infused bomba rice slow-cooked with veggies, layered with smoky aji amarillo paste and finished with fresh herbs",
+        "price": 529,
+        "category": "Main",
+        "image_url": "assets/arroz_bomba_veg.png",
+        "status": "Published",
+        "subtitle": "Veg Bomba Rice"
+    },
+    {
+        "name": "Chaufa Frito (Veg)",
+        "slug": "chaufa-frito-veg",
+        "description": "Peruvian-style fried rice wok-tossed with soy, garlic, and ginger, finished with smoky chifa flavours and your choice of vegetables",
+        "price": 489,
+        "category": "Main",
+        "image_url": "assets/chaufa_frito_veg.png",
+        "status": "Published",
+        "subtitle": "Veg Peruvian Fried Rice"
+    },
+    {
+        "name": "Chaufa Frito (Chicken)",
+        "slug": "chaufa-frito-chicken",
+        "description": "Peruvian-style fried rice wok-tossed with soy, garlic, and ginger, finished with smoky chifa flavours and chicken",
+        "price": 529,
+        "category": "Main",
+        "image_url": "assets/chaufa_frito_chicken.png",
+        "status": "Published",
+        "subtitle": "Chicken Peruvian Fried Rice"
+    },
+    {
+        "name": "Chaufa Frito (Shrimp)",
+        "slug": "chaufa-frito-shrimp",
+        "description": "Peruvian-style fried rice wok-tossed with soy, garlic, and ginger, finished with smoky chifa flavours and shrimp",
+        "price": 629,
+        "category": "Main",
+        "image_url": "assets/chaufa_frito_shrimp.png",
+        "status": "Published",
+        "subtitle": "Shrimp Peruvian Fried Rice"
+    },
+    {
+        "name": "Fideos Brava",
+        "slug": "fideos-brava",
+        "description": "Wok-tossed noodles with smoky mushroom and aubergine, coated in bold Peruvian-Latina spices",
+        "price": 629,
+        "category": "Main",
+        "image_url": "assets/fideos_brava.png",
+        "status": "Published",
+        "subtitle": "Dry spicy Noodles with Mushroom and Aubergine"
+    },
+    {
+        "name": "Fideos Picantes Secos con Pollo",
+        "slug": "fideos-picantes-secos-con-pollo",
+        "description": "Stir-fried noodles with minced chicken, chili oil, and fresh herbs.",
+        "price": 689,
+        "category": "Main",
+        "image_url": "assets/fideos_picantes_secos_pollo.png",
+        "status": "Published",
+        "subtitle": "Dry spicy Noodles with Chicken"
+    },
+    {
+        "name": "Fideos Picantes con Salsa",
+        "slug": "fideos-picantes-con-salsa",
+        "description": "Saucy stir-fried noodles with vegetables, chili oil, and fresh herbs",
+        "price": 589,
+        "category": "Main",
+        "image_url": "assets/fideos_picantes_salsa.png",
+        "status": "Published",
+        "subtitle": "Spicy Saucy Noodles"
+    },
+    {
+        "name": "Fideos Picantes con Pollo",
+        "slug": "fideos-picantes-con-pollo",
+        "description": "Saucy stir-fried noodles with minced chicken, chili oil, and fresh herbs",
+        "price": 749,
+        "category": "Main",
+        "image_url": "assets/fideos_picantes_con_pollo.png",
+        "status": "Published",
+        "subtitle": "Spicy Saucy Noodles"
+    },
+    {
+        "name": "Mac & Queso Picante",
+        "slug": "mac-queso-picante",
+        "description": "Creamy mac and cheese with rocato, aji amarillo, smoky cheddar and charred crumbs",
+        "price": 789,
+        "category": "Main",
+        "image_url": "assets/mac_queso_picante.png",
+        "status": "Published",
+        "subtitle": "Spicy Mac & Cheese"
+    },
+    {
+        "name": "Pasta Verde Vegetariana",
+        "slug": "pasta-verde-vegetariana",
+        "description": "Fresh pasta of the day, tossed with seasoned greens and fragrant herbs",
+        "price": 489,
+        "category": "Main",
+        "image_url": "assets/pasta_verde_vegetariana.png",
+        "status": "Published",
+        "subtitle": "Vegetarian Pasta"
+    },
+    {
+        "name": "Pasta de Pollo Peruano",
+        "slug": "pasta-de-pollo-peruano",
+        "description": "Chicken in Peruvian cream sauce with fresh pasta",
+        "price": 589,
+        "category": "Main",
+        "image_url": "assets/pasta_de_pollo_peruano.png",
+        "status": "Published",
+        "subtitle": "Peruvian Chicken Pasta"
+    },
+    {
+        "name": "Pasta del Mar",
+        "slug": "pasta-del-mar",
+        "description": "Seafood with delicate pasta and Peruvian spices",
+        "price": 789,
+        "category": "Main",
+        "image_url": "assets/pasta_del_mar.png",
+        "status": "Published",
+        "subtitle": "Seafood Pasta"
+    },
+    {
+        "name": "Filete de Pescado con Harissa",
+        "slug": "filete-de-pescado-con-harissa",
+        "description": "Grilled barramundi fillet served with harissa and herbed chermoula",
+        "price": 1489,
+        "category": "Main",
+        "image_url": "assets/filete_de_pescado_con_harissa.png",
+        "status": "Published",
+        "subtitle": "Whole Grilled Fish Fillet with Harissa"
+    },
+    {
+        "name": "Paella Andina",
+        "slug": "paella-andina",
+        "description": "Bomba rice cooked with saffron and seasonal vegetables, finished with olive oil",
+        "price": 898,
+        "category": "Main",
+        "image_url": "assets/paella_andina.png",
+        "status": "Published",
+        "subtitle": "Veg Paella"
+    },
+    {
+        "name": "Arroz Marina Peruano",
+        "slug": "arroz-marina-peruano",
+        "description": "Bomba rice cooked with saffron and seasonal seafood, finished with olive oil",
+        "price": 1389,
+        "category": "Main",
+        "image_url": "assets/arroz_marina_peruano.png",
+        "status": "Published",
+        "subtitle": "Seafood Paella"
+    },
+    {
+        "name": "Lomo Saltado de Cordero",
+        "slug": "lomo-saltado-de-cordero",
+        "description": "Tender strips of Lamb with onions and tomatoes in a soy-lime sauce, finished with native Peruvian chili, served with crispy fries and steamed rice.",
+        "price": 689,
+        "category": "Main",
+        "image_url": "assets/lomo_saltado_de_cordero.png",
+        "status": "Published",
+        "subtitle": "Peruvian Stir-Fried Lamb with Fries"
+    },
+    {
+        "name": "Lomo Saltado",
+        "slug": "lomo-saltado",
+        "description": "Tender strips of wok-tossed vegetables with onions and tomatoes in a soy-lime sauce, finished with native Peruvian chili, served with crispy fries and steamed rice.",
+        "price": 529,
+        "category": "Main",
+        "image_url": "assets/lomo_saltado_veg.png",
+        "status": "Published",
+        "subtitle": "Peruvian Stir-Fried Veggies with Fries"
+    },
+    {
+        "name": "Lomo Saltado (Buff)",
+        "slug": "lomo-saltado-buff",
+        "description": "Tender strips of Buff with onions and tomatoes in a soy-lime sauce, finished with native Peruvian chili, served with crispy fries and steamed rice.",
+        "price": 629,
+        "category": "Main",
+        "image_url": "assets/lomo_saltado_buff.png",
+        "status": "Published",
+        "subtitle": "Peruvian Stir-Fried Buff"
+    },
+    {
+        "name": "Andean Ember (Veg)",
+        "slug": "andean-ember-veg",
+        "description": "Choice of vegetables flame-grilled with smoky chipotle glaze, served with saut\u00e9ed vegetables, jasmine rice, and chipotle gravy",
+        "price": 629,
+        "category": "Main",
+        "image_url": "assets/andean_ember_veg.png",
+        "status": "Published",
+        "subtitle": "Andean Ember (Veg)"
+    },
+    {
+        "name": "Andean Ember (Seafood)",
+        "slug": "andean-ember-seafood",
+        "description": "Salmon flame-grilled with smoky chipotle glaze, served with saut\u00e9ed vegetables, jasmine rice, and chipotle gravy",
+        "price": 989,
+        "category": "Main",
+        "image_url": "assets/andean_ember_seafood.png",
+        "status": "Published",
+        "subtitle": "Andean Ember (Seafood)"
+    },
+    {
+        "name": "Andean Ember (Chicken)",
+        "slug": "andean-ember-chicken",
+        "description": "Chicken flame-grilled with smoky chipotle glaze, served with saut\u00e9ed vegetables, jasmine rice, and chipotle gravy",
+        "price": 789,
+        "category": "Main",
+        "image_url": "assets/andean_ember_chicken.png",
+        "status": "Published",
+        "subtitle": "Andean Ember (Chicken)"
+    },
+    {
+        "name": "Bocado Inca",
+        "slug": "bocado-inca",
+        "description": "A crispy potato patty layered with fresh Andean flavors",
+        "price": 529,
+        "category": "Main",
+        "image_url": "assets/bocado_inca.png",
+        "status": "Published",
+        "subtitle": "Papa Crown"
+    },
+    {
+        "name": "Hamburguesa Andina (Lamb)",
+        "slug": "hamburguesa-andina-lamb",
+        "description": "Juicy Burger with andean-inspired topping",
+        "price": 629,
+        "category": "Main",
+        "image_url": "assets/hamburguesa_andina_lamb.png",
+        "status": "Published",
+        "subtitle": "Lamb Burger"
+    },
+    {
+        "name": "Hamburguesa Andina (Buff)",
+        "slug": "hamburguesa-andina-buff",
+        "description": "Juicy Burger with andean-inspired topping",
+        "price": 589,
+        "category": "Main",
+        "image_url": "assets/hamburguesa_andina_buff.png",
+        "status": "Published",
+        "subtitle": "Buff Burger"
+    },
+    {
+        "name": "Bistec en Salsa Jus",
+        "slug": "bistec-en-salsa-jus",
+        "description": "Tender buffalo steak finished with a rich jus reduction, served with fermented potato fries.",
+        "price": 989,
+        "category": "Main",
+        "image_url": "assets/bistec_en_salsa_jus.png",
+        "status": "Published",
+        "subtitle": "Steak with Fries"
+    },
+    {
+        "name": "Cachapa con Miel",
+        "slug": "cachapa-con-miel",
+        "description": "Traditional corn pancake drizzled with honey",
+        "price": 489,
+        "category": "Desserts",
+        "image_url": "assets/cachapa_con_miel.png",
+        "status": "Published",
+        "subtitle": "Sweet Corn Pancake & Honey"
+    },
+    {
+        "name": "Dulce Oscuro",
+        "slug": "dulce-oscuro",
+        "description": "Decadent chocolate cake layered with dulce de leche, biscuit crumbs, caramelised makhana, rice crisps, and finished with mini meringues swirls",
+        "price": 729,
+        "category": "Desserts",
+        "image_url": "assets/dulce_oscuro.png",
+        "status": "Published",
+        "subtitle": "Moist Dark Chocolate Cake"
+    },
+    {
+        "name": "Pina Fuego",
+        "slug": "pina-fuego",
+        "description": "Peruvian-style cr\u00e8me br\u00fbl\u00e9e layered with fresh saffron ice cream and pineapple, topped with coconut and pineapple custard, finished with caramelized sugar",
+        "price": 829,
+        "category": "Desserts",
+        "image_url": "assets/pina_fuego.png",
+        "status": "Published",
+        "subtitle": "Pineapple Creme Brulee"
+    },
+    {
+        "name": "Chicha Morada",
+        "slug": "chicha-morada",
+        "description": "Sweet beverage brewed from purple corn with spices",
+        "price": 689,
+        "category": "Beverages",
+        "image_url": "assets/chicha_morada.png",
+        "status": "Published",
+        "subtitle": "Purple Corn Drink"
+    },
+    {
+        "name": "Brisa de Durazno Andino",
+        "slug": "brisa-de-durazno-andino",
+        "description": "Crushed ice with green tea, pickled ginger, lime juice and peach syrup",
+        "price": 689,
+        "category": "Beverages",
+        "image_url": "assets/brisa_de_durazno_andino.png",
+        "status": "Published",
+        "subtitle": "Andean Peach Breeze"
+    },
+    {
+        "name": "Bosque Rubi",
+        "slug": "bosque-rubi",
+        "description": "Hazelnut syrup with lime juice and cranberry juice",
+        "price": 689,
+        "category": "Beverages",
+        "image_url": "assets/bosque_rubi.png",
+        "status": "Published",
+        "subtitle": "Crimson Nut Grove"
+    },
+    {
+        "name": "Atardecer de la Selva",
+        "slug": "atardecer-de-la-selva",
+        "description": "Lychee Juice, passion fruit syrup, lime juice and cola",
+        "price": 589,
+        "category": "Beverages",
+        "image_url": "assets/atardecer_de_la_selva.png",
+        "status": "Published",
+        "subtitle": "Jungle Sunset"
+    },
+    {
+        "name": "Agua Fresco",
+        "slug": "agua-fresco",
+        "description": "Light crisp agua fresco made with fresh coconut water and cucumber",
+        "price": 589,
+        "category": "Beverages",
+        "image_url": "assets/agua_fresco.png",
+        "status": "Published",
+        "subtitle": "Coconut and Cucumber Cooler"
+    },
+    {
+        "name": "Sand\u00eda Picante",
+        "slug": "sand-a-picante",
+        "description": "Refreshing watermelon juice with ginger and a touch of chili heat",
+        "price": 589,
+        "category": "Beverages",
+        "image_url": "assets/sandia_picante.png",
+        "status": "Published",
+        "subtitle": "Watermelon & Ginger with Chillis"
+    },
+    {
+        "name": "Granada y Ki\u00f3n",
+        "slug": "granada-y-ki-n",
+        "description": "Sparkling pomegranate ginger soda with a crisp finish",
+        "price": 629,
+        "category": "Beverages",
+        "image_url": "assets/granada_y_kion.png",
+        "status": "Published",
+        "subtitle": "Pomegranate & Ginger Ale"
+    },
+    {
+        "name": "Limonada Cremosa",
+        "slug": "limonada-cremosa",
+        "description": "Smooth, frothy lemonade blended with milk and vanilla",
+        "price": 589,
+        "category": "Beverages",
+        "image_url": "assets/limonada_cremosa.png",
+        "status": "Published",
+        "subtitle": "Creamy Lemonade"
+    },
+    {
+        "name": "Poncho de Mango",
+        "slug": "poncho-de-mango",
+        "description": "Ripe mango pur\u00e9e with lime and chili for a spicy-sweet punch",
+        "price": 629,
+        "category": "Beverages",
+        "image_url": "assets/poncho_de_mango.png",
+        "status": "Published",
+        "subtitle": "Spicy Mango Punch"
+    },
+    {
+        "name": "Kombucha Artesanal",
+        "slug": "kombucha-artesanal",
+        "description": "Locally fermented probiotic tea infused with natural fruits and botanicals",
+        "price": 489,
+        "category": "Beverages",
+        "image_url": "assets/bosque_rubi.png",
+        "status": "Published",
+        "subtitle": "Artisanal Kombucha"
+    }
+]

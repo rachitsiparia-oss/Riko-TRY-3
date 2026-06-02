@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIKO - Tapas & Fine Dining Showcase</title>
+    <meta name="description" content="Explore RIKO's gourmet tapas menu. Select from our curated sections including For One, Salads, Cold & Hot Tapas, Mains, Desserts, and Beverages. Dine in style.">
+    <!-- Link to custom styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header & Brand Logo -->
+    <header>
+        <div class="logo-container">
+            <img src="assets/riko_logo.png" alt="RIKO South American Cuisine" class="brand-logo">
+        </div>
+        <!-- Sticky Navigation Tabs -->
+        <nav class="category-nav no-scrollbar" id="nav-tabs">
+            <button class="category-tab active" data-target="for-one">For One</button>
+            <button class="category-tab" data-target="salads">Salads</button>
+            <button class="category-tab" data-target="cold-dishes">Cold Dishes</button>
+            <button class="category-tab" data-target="hot-dishes">Hot Dishes</button>
+            <button class="category-tab" data-target="main">Main</button>
+            <button class="category-tab" data-target="desserts">Desserts</button>
+            <button class="category-tab" data-target="beverages">Beverages</button>
+        </nav>
+    </header>
+
+    <!-- Main Menu Content -->
+    <main class="menu-container">
+
+        <!-- FOR ONE SECTION -->
+        <section id="for-one" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">For One</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Bomba de Choclo -->
+                    <div class="dish-card">
+                        <img src="assets/bomba_de_choclo.png" alt="Bomba de Choclo | 289 - Corn Custard Bomb" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Bomba de Choclo</h3>
+                            <span class="price">289</span>
+                            <p class="subtitle">Corn Custard Bomb</p>
+                            <p class="description">A delicate custard of sweet Peruvian corn with aged cheese & crisp shell</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Papa Cremosas -->
+                    <div class="dish-card">
+                        <img src="assets/papa_cremosas.png" alt="Papa Cremosas | 289 - Potato, Sour Cream & Beetroot Caviar" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Papa Cremosas</h3>
+                            <span class="price">289</span>
+                            <p class="subtitle">Potato, Sour Cream & Beetroot Caviar</p>
+                            <p class="description">Crispy golden potato crowned with tangy sour cream and beetroot caviar pearls</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Elote Picante -->
+                    <div class="dish-card">
+                        <img src="assets/elote_picante.png" alt="Elote Picante | 329 - Charred Butter Garlic Corn" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Elote Picante</h3>
+                            <span class="price">329</span>
+                            <p class="subtitle">Charred Butter Garlic Corn</p>
+                            <p class="description">Smoky grilled corn glazed with spiced garlic butter</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Coliflor Crujiente -->
+                    <div class="dish-card">
+                        <img src="assets/coliflor_crujiente.png" alt="Coliflor Crujiente | 389 - Crispy Cauliflower with Sauces" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Coliflor Crujiente</h3>
+                            <span class="price">389</span>
+                            <p class="subtitle">Crispy Cauliflower with Sauces</p>
+                            <p class="description">Golden Cauliflower florets with chermoula and smoky romesco sauce</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Patatas Bravas Clásicas -->
+                    <div class="dish-card">
+                        <img src="assets/patatas_bravas_clasicas.png" alt="Patatas Bravas Clásicas | 389 - Golden Spanish Potatoes" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Patatas Bravas Clásicas</h3>
+                            <span class="price">389</span>
+                            <p class="subtitle">Golden Spanish Potatoes</p>
+                            <p class="description">Crispy potatoes with smoked romesco and garlic aioli</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Papas Umami -->
+                    <div class="dish-card">
+                        <img src="assets/papas_umami.png" alt="Papas Umami | 429 - Parmesan Truffle Fries" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Papas Umami</h3>
+                            <span class="price">429</span>
+                            <p class="subtitle">Parmesan Truffle Fries</p>
+                            <p class="description">Crispy golden fries tossed with parmesan, seaweed, truffle oil & spring onions</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Croquetas de Queso Fresco -->
+                    <div class="dish-card">
+                        <img src="assets/croquetas_de_queso_fresco.png" alt="Croquetas de Queso Fresco | 289 - Cottage Cheese Croquettes" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Croquetas de Queso Fresco</h3>
+                            <span class="price">289</span>
+                            <p class="subtitle">Cottage Cheese Croquettes</p>
+                            <p class="description">Golden-fried bites of soft cottage cheese blended with spices</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Bombas Andinas -->
+                    <div class="dish-card">
+                        <img src="assets/bombas_andinas.png" alt="Bombas Andinas | 589 - Mushroom & Cheese Empanada" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Bombas Andinas</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Mushroom & Cheese Empanada</p>
+                            <p class="description">Golden empanadas packed with earthy mushrooms and creamy Peruvian cheese</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Verde Bombas -->
+                    <div class="dish-card">
+                        <img src="assets/verde_bombas.png" alt="Verde Bombas | 329 - Spinach & Cheese Empanada" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Verde Bombas</h3>
+                            <span class="price">329</span>
+                            <p class="subtitle">Spinach & Cheese Empanada</p>
+                            <p class="description">Golden empanadas filled with tender spinach and creamy Peruvian cheese</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: Queso Bombas -->
+                    <div class="dish-card">
+                        <img src="assets/queso_bombas.png" alt="Queso Bombas | 529 - Cheese & Chicken Empanada" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Queso Bombas</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Cheese & Chicken Empanada</p>
+                            <p class="description">Crispy empanadas filled with creamy cheese and tender chicken</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 11: Empanada Criolla -->
+                    <div class="dish-card">
+                        <img src="assets/empanada_criolla.png" alt="Empanada Criolla | 589 - Spiced Minced Lamb Meat Empanada" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Empanada Criolla</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Spiced Minced Lamb Meat Empanada</p>
+                            <p class="description">Golden flaky pastry filled with cinnamon-spiced minced meat</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: Sopa de Garbanso -->
+                    <div class="dish-card">
+                        <img src="assets/sopa_de_garbanso.png" alt="Sopa de Garbanso | 329 - Lentil Soup" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Sopa de Garbanso</h3>
+                            <span class="price">329</span>
+                            <p class="subtitle">Lentil Soup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- SALADS SECTION -->
+        <section id="salads" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">Salads</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Ensalada Mercado Verde -->
+                    <div class="dish-card">
+                        <img src="assets/ensalada_mercado.png" alt="Ensalada Mercado Verde | 489 - Big Market Salad" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ensalada Mercado Verde</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Big Market Salad</p>
+                            <p class="description">Seasonal lettuces layered with avocado, radish, carrot, and beetroot, gently dressed in lime vinaigrette and fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Sol de Maiz -->
+                    <div class="dish-card">
+                        <img src="assets/sol_de_maiz.png" alt="Sol de Maiz | 389 - Sun-Kissed Corn Salad" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Sol de Maiz</h3>
+                            <span class="price">389</span>
+                            <p class="subtitle">Sun-Kissed Corn Salad</p>
+                            <p class="description">Charred corn with toasted kernels, onions and red chili</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Pomelo Fresco -->
+                    <div class="dish-card">
+                        <img src="assets/ensalada_camaron_pomelo.png" alt="Pomelo Fresco | 389 - Fresh Citrus Salad" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pomelo Fresco</h3>
+                            <span class="price">389</span>
+                            <p class="subtitle">Fresh Citrus Salad</p>
+                            <p class="description">Refreshing salad of fresh pomelo wedges, mixed greens, avocado, and toasted pumpkin seeds, dressed in light lime-honey vinaigrette</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Ensalad de Camarón y Pomelo -->
+                    <div class="dish-card">
+                        <img src="assets/ensalada_camaron_pomelo.png" alt="Ensalad de Camarón y Pomelo | 589 - Pomelo Shrimp Salad" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ensalad de Camarón y Pomelo</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Pomelo Shrimp Salad</p>
+                            <p class="description">Mixed lettuces with pomelo, roasted coconut, blueberry, and shrimp in a soy-fish sauce vinaigrette</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Pepino Picante Crunch -->
+                    <div class="dish-card">
+                        <img src="assets/pepino_picante_crunch.png" alt="Pepino Picante Crunch | 295 - Spicy Cucumber Crunch" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pepino Picante Crunch</h3>
+                            <span class="price">295</span>
+                            <p class="subtitle">Spicy Cucumber Crunch</p>
+                            <p class="description">Cucumber ribbons with red chili, lime zest and toasted sesame</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- COLD DISHES SECTION -->
+        <section id="cold-dishes" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">Cold Dishes</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Ceviche de Sandia -->
+                    <div class="dish-card">
+                        <img src="assets/ceviche_de_sandia.png" alt="Ceviche de Sandia | 549 - Watermelon Ceviche" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ceviche de Sandia</h3>
+                            <span class="price">549</span>
+                            <p class="subtitle">Watermelon Ceviche</p>
+                            <p class="description">Watermelon cured in lime with native chili, coriander stem, and sea salt</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Ceviche Estrella -->
+                    <div class="dish-card">
+                        <img src="assets/ceviche_estrella.png" alt="Ceviche Estrella | 389 - Dragon Fruit & Muskmelon Ceviche with Caviar" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ceviche Estrella</h3>
+                            <span class="price">389</span>
+                            <p class="subtitle">Dragon Fruit & Muskmelon Ceviche with Caviar</p>
+                            <p class="description">Lime-cured dragon fruit and muskmelon, finished with pickled onion and caviar pearls</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Ceviche Clásico -->
+                    <div class="dish-card">
+                        <img src="assets/ceviche_clasico.png" alt="Ceviche Clásico | 589 - Classic Seabass Ceviche" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ceviche Clásico</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Classic Seabass Ceviche</p>
+                            <p class="description">Fresh seabass cured in lime juice, finished with aji amarillo or leche de tigre, red onion, chilli and herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Ceviche de Mango y Maracuya -->
+                    <div class="dish-card">
+                        <img src="assets/ceviche_de_mango_maracuya.png" alt="Ceviche de Mango y Maracuya | 689 - Mango & Passion Fruit Shrimp Ceviche" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ceviche de Mango y Maracuya</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Mango & Passion Fruit Shrimp Ceviche</p>
+                            <p class="description">Shrimp marinated in mango and passion fruit with herbs and chili</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Ceviche Mixto Rojo -->
+                    <div class="dish-card">
+                        <img src="assets/ceviche_mixto_rojo.png" alt="Ceviche Mixto Rojo | 589 - Mixed Red Seafood Ceviche" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ceviche Mixto Rojo</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Mixed Red Seafood Ceviche</p>
+                            <p class="description">Octopus, scallops, calamari & shrimp in red aji panca leche de tigre</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Ceviche Fresca -->
+                    <div class="dish-card">
+                        <img src="assets/ceviche_fresca.png" alt="Ceviche Fresca | 429 - Fresh Causa" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Ceviche Fresca</h3>
+                            <span class="price">429</span>
+                            <p class="subtitle">Fresh Causa</p>
+                            <p class="description">Layers of creamy Peruvian potato and fresh garden vegetables, gently seasoned with lime aji amarillo</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Causa de Pollo y Huevo -->
+                    <div class="dish-card">
+                        <img src="assets/causa_de_pollo_y_huevo.png" alt="Causa de Pollo y Huevo | 489 - Chicken & Egg Causa" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Causa de Pollo y Huevo</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Chicken & Egg Causa</p>
+                            <p class="description">Mashed yellow potato layered with chicken and egg, finished with lime and ají amarillo mayo.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Causa de Atún -->
+                    <div class="dish-card">
+                        <img src="assets/causa_de_atun.png" alt="Causa de Atún | 589 - Tuna Causa" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Causa de Atún</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Tuna Causa</p>
+                            <p class="description">Mashed yellow potato layered with tuna and avocado, finished with lime and ají amarillo mayo</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Tartare Andino -->
+                    <div class="dish-card">
+                        <img src="assets/tartare_andino.png" alt="Tartare Andino | 289 - Beetroot & Avocado Tartare" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Tartare Andino</h3>
+                            <span class="price">289</span>
+                            <p class="subtitle">Beetroot & Avocado Tartare</p>
+                            <p class="description">Beetroot and avocado layered and finished with citrus dressing and fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: Tamal de Yaca -->
+                    <div class="dish-card">
+                        <img src="assets/tamal_de_yaca.png" alt="Tamal de Yaca | 489 - Jackfruit Tamale" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Tamal de Yaca</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Jackfruit Tamale</p>
+                            <p class="description">Soft corn masa filled with tender jackfruit and steamed in corn husk</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 11: Tamal de Cordero -->
+                    <div class="dish-card">
+                        <img src="assets/tamal_de_cordero.png" alt="Tamal de Cordero | 529 - Lamb Tamale" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Tamal de Cordero</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Lamb Tamale</p>
+                            <p class="description">Soft corn tamale filled with spiced lamb, steamed in a banana leaf</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: Tostada Tropical -->
+                    <div class="dish-card">
+                        <img src="assets/tostada_tropical.png" alt="Tostada Tropical | 669 - Mango & Avocado Toast with Chilli Tofu" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Tostada Tropical</h3>
+                            <span class="price">669</span>
+                            <p class="subtitle">Mango & Avocado Toast with Chilli Tofu</p>
+                            <p class="description">Crisp toast topped with fresh mango, creamy avocado and spicy marinated tofu</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 13: Tostada de Atún -->
+                    <div class="dish-card">
+                        <img src="assets/tostada_de_atun.png" alt="Tostada de Atún | 729 - Spicy Tuna Toast" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Tostada de Atún</h3>
+                            <span class="price">729</span>
+                            <p class="subtitle">Spicy Tuna Toast</p>
+                            <p class="description">Toasted bread topped with marinated spicy tuna, creamy mayo and fresh herbs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- HOT DISHES SECTION -->
+        <section id="hot-dishes" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">Hot Dishes</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Calamar Crocante -->
+                    <div class="dish-card">
+                        <img src="assets/calamar_crocante.png" alt="Calamar Crocante | 589 - Crispy Calamari" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Calamar Crocante</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Crispy Calamari</p>
+                            <p class="description">Fried calamari rings served with aioli dip</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Brochetas de Pollo -->
+                    <div class="dish-card">
+                        <img src="assets/brochetas_de_pollo.png" alt="Brochetas de Pollo | 679 - Chicken Skewers" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Brochetas de Pollo</h3>
+                            <span class="price">679</span>
+                            <p class="subtitle">Chicken Skewers</p>
+                            <p class="description">Chicken skewers marinated in Peruvian spices and chargrilled for rich flavour and tenderness</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Pollo a la Brasa -->
+                    <div class="dish-card">
+                        <img src="assets/pollo_a_la_brasa.png" alt="Pollo a la Brasa | 789 - Peruvian Rotisserie Chicken" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pollo a la Brasa</h3>
+                            <span class="price">789</span>
+                            <p class="subtitle">Peruvian Rotisserie Chicken</p>
+                            <p class="description">Half rotisserie chicken marinated with traditional Peruvian spices and grilled over open flame</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Alitas Picantes -->
+                    <div class="dish-card">
+                        <img src="assets/alitas_picantes.png" alt="Alitas Picantes | 529 - Cusco Fire Wings" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Alitas Picantes</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Cusco Fire Wings</p>
+                            <p class="description">Crispy wings tossed in fiery aji glaze</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Costillas del Fuego -->
+                    <div class="dish-card">
+                        <img src="assets/costillas_del_fuego.png" alt="Costillas del Fuego | 1289 - Sticky Glazed Lamb Ribs" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Costillas del Fuego</h3>
+                            <span class="price">1289</span>
+                            <p class="subtitle">Sticky Glazed Lamb Ribs</p>
+                            <p class="description">Tender lamb ribs with a refined sweet-and-spicy glaze</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Gambas a la Brasa -->
+                    <div class="dish-card">
+                        <img src="assets/gambas_a_la_brasa.png" alt="Gambas a la Brasa | 989 - Grilled Tiger Prawns" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Gambas a la Brasa</h3>
+                            <span class="price">989</span>
+                            <p class="subtitle">Grilled Tiger Prawns</p>
+                            <p class="description">Succulent tiger prawns grilled and dressed with fresh salsa</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Costillas Andinas -->
+                    <div class="dish-card">
+                        <img src="assets/costillas.png" alt="Costillas Andinas | 1289 - Andean Lamb Chops" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Costillas Andinas</h3>
+                            <span class="price">1289</span>
+                            <p class="subtitle">Andean Lamb Chops</p>
+                            <p class="description">Charred lamb chops served with vibrant chimichurri and a smoky burnt cauliflower pureé</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- MAIN SECTION -->
+        <section id="main" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">Main</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Arroz bomba (Chicken) -->
+                    <div class="dish-card">
+                        <img src="assets/arroz_bomba_chicken.png" alt="Arroz bomba (Chicken) | 689 - Chicken Bomba Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Arroz bomba (Chicken)</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Chicken Bomba Rice</p>
+                            <p class="description">Saffron-infused bomba rice slow-cooked with tender chicken, layered with smoky aji amarillo paste and finished with fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Arroz bomba (Seafood) -->
+                    <div class="dish-card">
+                        <img src="assets/arroz_bomba_seafood.png" alt="Arroz bomba (Seafood) | 898 - Seabass Bomba Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Arroz bomba (Seafood)</h3>
+                            <span class="price">898</span>
+                            <p class="subtitle">Seabass Bomba Rice</p>
+                            <p class="description">Saffron-infused bomba rice slow-cooked with fresh seabass, layered with smoky aji amarillo paste and finished with fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Arroz bomba (Tofu) -->
+                    <div class="dish-card">
+                        <img src="assets/arroz_bomba_tofu.png" alt="Arroz bomba (Tofu) | 689 - Tofu Bomba Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Arroz bomba (Tofu)</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Tofu Bomba Rice</p>
+                            <p class="description">Saffron-infused bomba rice slow-cooked with tofu, layered with smoky aji amarillo paste and finished with fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Arroz bomba (Veg) -->
+                    <div class="dish-card">
+                        <img src="assets/arroz_bomba_veg.png" alt="Arroz bomba (Veg) | 529 - Veg Bomba Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Arroz bomba (Veg)</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Veg Bomba Rice</p>
+                            <p class="description">Saffron-infused bomba rice slow-cooked with veggies, layered with smoky aji amarillo paste and finished with fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Chaufa Frito (Veg) -->
+                    <div class="dish-card">
+                        <img src="assets/chaufa_frito_veg.png" alt="Chaufa Frito (Veg) | 489 - Veg Peruvian Fried Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Chaufa Frito (Veg)</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Veg Peruvian Fried Rice</p>
+                            <p class="description">Peruvian-style fried rice wok-tossed with soy, garlic, and ginger, finished with smoky chifa flavours and your choice of vegetables</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Chaufa Frito (Chicken) -->
+                    <div class="dish-card">
+                        <img src="assets/chaufa_frito_chicken.png" alt="Chaufa Frito (Chicken) | 529 - Chicken Peruvian Fried Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Chaufa Frito (Chicken)</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Chicken Peruvian Fried Rice</p>
+                            <p class="description">Peruvian-style fried rice wok-tossed with soy, garlic, and ginger, finished with smoky chifa flavours and chicken</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Chaufa Frito (Shrimp) -->
+                    <div class="dish-card">
+                        <img src="assets/chaufa_frito_shrimp.png" alt="Chaufa Frito (Shrimp) | 629 - Shrimp Peruvian Fried Rice" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Chaufa Frito (Shrimp)</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Shrimp Peruvian Fried Rice</p>
+                            <p class="description">Peruvian-style fried rice wok-tossed with soy, garlic, and ginger, finished with smoky chifa flavours and shrimp</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Fideos Brava -->
+                    <div class="dish-card">
+                        <img src="assets/fideos_brava.png" alt="Fideos Brava | 629 - Dry spicy Noodles with Mushroom and Aubergine" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Fideos Brava</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Dry spicy Noodles with Mushroom and Aubergine</p>
+                            <p class="description">Wok-tossed noodles with smoky mushroom and aubergine, coated in bold Peruvian-Latina spices</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Fideos Picantes Secos con Pollo -->
+                    <div class="dish-card">
+                        <img src="assets/fideos_picantes_secos_pollo.png" alt="Fideos Picantes Secos con Pollo | 689 - Dry spicy Noodles with Chicken" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Fideos Picantes Secos con Pollo</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Dry spicy Noodles with Chicken</p>
+                            <p class="description">Stir-fried noodles with minced chicken, chili oil, and fresh herbs.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: Fideos Picantes con Salsa -->
+                    <div class="dish-card">
+                        <img src="assets/fideos_picantes_salsa.png" alt="Fideos Picantes con Salsa | 589 - Spicy Saucy Noodles" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Fideos Picantes con Salsa</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Spicy Saucy Noodles</p>
+                            <p class="description">Saucy stir-fried noodles with vegetables, chili oil, and fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 11: Fideos Picantes con Pollo -->
+                    <div class="dish-card">
+                        <img src="assets/fideos_picantes_con_pollo.png" alt="Fideos Picantes con Pollo | 749 - Spicy Saucy Noodles" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Fideos Picantes con Pollo</h3>
+                            <span class="price">749</span>
+                            <p class="subtitle">Spicy Saucy Noodles</p>
+                            <p class="description">Saucy stir-fried noodles with minced chicken, chili oil, and fresh herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 12: Mac & Queso Picante -->
+                    <div class="dish-card">
+                        <img src="assets/mac_queso_picante.png" alt="Mac & Queso Picante | 789 - Spicy Mac & Cheese" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Mac & Queso Picante</h3>
+                            <span class="price">789</span>
+                            <p class="subtitle">Spicy Mac & Cheese</p>
+                            <p class="description">Creamy mac and cheese with rocato, aji amarillo, smoky cheddar and charred crumbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 13: Pasta Verde Vegetariana -->
+                    <div class="dish-card">
+                        <img src="assets/pasta_verde_vegetariana.png" alt="Pasta Verde Vegetariana | 489 - Vegetarian Pasta" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pasta Verde Vegetariana</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Vegetarian Pasta</p>
+                            <p class="description">Fresh pasta of the day, tossed with seasoned greens and fragrant herbs</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 14: Pasta de Pollo Peruano -->
+                    <div class="dish-card">
+                        <img src="assets/pasta_de_pollo_peruano.png" alt="Pasta de Pollo Peruano | 589 - Peruvian Chicken Pasta" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pasta de Pollo Peruano</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Peruvian Chicken Pasta</p>
+                            <p class="description">Chicken in Peruvian cream sauce with fresh pasta</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 15: Pasta del Mar -->
+                    <div class="dish-card">
+                        <img src="assets/pasta_del_mar.png" alt="Pasta del Mar | 789 - Seafood Pasta" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pasta del Mar</h3>
+                            <span class="price">789</span>
+                            <p class="subtitle">Seafood Pasta</p>
+                            <p class="description">Seafood with delicate pasta and Peruvian spices</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 16: Filete de Pescado con Harissa -->
+                    <div class="dish-card">
+                        <img src="assets/filete_de_pescado_con_harissa.png" alt="Filete de Pescado con Harissa | 1489 - Whole Grilled Fish Fillet with Harissa" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Filete de Pescado con Harissa</h3>
+                            <span class="price">1489</span>
+                            <p class="subtitle">Whole Grilled Fish Fillet with Harissa</p>
+                            <p class="description">Grilled barramundi fillet served with harissa and herbed chermoula</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 17: Paella Andina -->
+                    <div class="dish-card">
+                        <img src="assets/paella_andina.png" alt="Paella Andina | 898 - Veg Paella" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Paella Andina</h3>
+                            <span class="price">898</span>
+                            <p class="subtitle">Veg Paella</p>
+                            <p class="description">Bomba rice cooked with saffron and seasonal vegetables, finished with olive oil</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 18: Arroz Marina Peruano -->
+                    <div class="dish-card">
+                        <img src="assets/arroz_marina_peruano.png" alt="Arroz Marina Peruano | 1389 - Seafood Paella" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Arroz Marina Peruano</h3>
+                            <span class="price">1389</span>
+                            <p class="subtitle">Seafood Paella</p>
+                            <p class="description">Bomba rice cooked with saffron and seasonal seafood, finished with olive oil</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 19: Lomo Saltado de Cordero -->
+                    <div class="dish-card">
+                        <img src="assets/lomo_saltado_de_cordero.png" alt="Lomo Saltado de Cordero | 689 - Peruvian Stir-Fried Lamb with Fries" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Lomo Saltado de Cordero</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Peruvian Stir-Fried Lamb with Fries</p>
+                            <p class="description">Tender strips of Lamb with onions and tomatoes in a soy-lime sauce, finished with native Peruvian chili, served with crispy fries and steamed rice.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 20: Lomo Saltado -->
+                    <div class="dish-card">
+                        <img src="assets/lomo_saltado_veg.png" alt="Lomo Saltado | 529 - Peruvian Stir-Fried Veggies with Fries" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Lomo Saltado</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Peruvian Stir-Fried Veggies with Fries</p>
+                            <p class="description">Tender strips of wok-tossed vegetables with onions and tomatoes in a soy-lime sauce, finished with native Peruvian chili, served with crispy fries and steamed rice.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 21: Lomo Saltado (Buff) -->
+                    <div class="dish-card">
+                        <img src="assets/lomo_saltado_buff.png" alt="Lomo Saltado (Buff) | 629 - Peruvian Stir-Fried Buff" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Lomo Saltado (Buff)</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Peruvian Stir-Fried Buff</p>
+                            <p class="description">Tender strips of Buff with onions and tomatoes in a soy-lime sauce, finished with native Peruvian chili, served with crispy fries and steamed rice.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 22: Andean Ember (Veg) -->
+                    <div class="dish-card">
+                        <img src="assets/andean_ember_veg.png" alt="Andean Ember (Veg) | 629 - Andean Ember (Veg)" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Andean Ember (Veg)</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Andean Ember (Veg)</p>
+                            <p class="description">Choice of vegetables flame-grilled with smoky chipotle glaze, served with sautéed vegetables, jasmine rice, and chipotle gravy</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 23: Andean Ember (Seafood) -->
+                    <div class="dish-card">
+                        <img src="assets/andean_ember_seafood.png" alt="Andean Ember (Seafood) | 989 - Andean Ember (Salmon)" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Andean Ember (Seafood)</h3>
+                            <span class="price">989</span>
+                            <p class="subtitle">Andean Ember (Seafood)</p>
+                            <p class="description">Salmon flame-grilled with smoky chipotle glaze, served with sautéed vegetables, jasmine rice, and chipotle gravy</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 24: Andean Ember (Chicken) -->
+                    <div class="dish-card">
+                        <img src="assets/andean_ember_chicken.png" alt="Andean Ember (Chicken) | 789 - Andean Ember (Chicken)" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Andean Ember (Chicken)</h3>
+                            <span class="price">789</span>
+                            <p class="subtitle">Andean Ember (Chicken)</p>
+                            <p class="description">Chicken flame-grilled with smoky chipotle glaze, served with sautéed vegetables, jasmine rice, and chipotle gravy</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 25: Bocado Inca -->
+                    <div class="dish-card">
+                        <img src="assets/bocado_inca.png" alt="Bocado Inca | 529 - Papa Crown" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Bocado Inca</h3>
+                            <span class="price">529</span>
+                            <p class="subtitle">Papa Crown</p>
+                            <p class="description">A crispy potato patty layered with fresh Andean flavors</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 26: Hamburguesa Andina (Lamb) -->
+                    <div class="dish-card">
+                        <img src="assets/hamburguesa_andina_lamb.png" alt="Hamburguesa Andina (Lamb) | 629 - Lamb Burger" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Hamburguesa Andina (Lamb)</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Lamb Burger</p>
+                            <p class="description">Juicy Burger with andean-inspired topping</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 27: Hamburguesa Andina (Buff) -->
+                    <div class="dish-card">
+                        <img src="assets/hamburguesa_andina_buff.png" alt="Hamburguesa Andina (Buff) | 589 - Buff Burger" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Hamburguesa Andina (Buff)</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Buff Burger</p>
+                            <p class="description">Juicy Burger with andean-inspired topping</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 28: Bistec en Salsa Jus -->
+                    <div class="dish-card">
+                        <img src="assets/bistec_en_salsa_jus.png" alt="Bistec en Salsa Jus | 989 - Steak with Fries" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Bistec en Salsa Jus</h3>
+                            <span class="price">989</span>
+                            <p class="subtitle">Steak with Fries</p>
+                            <p class="description">Tender buffalo steak finished with a rich jus reduction, served with fermented potato fries.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- DESSERTS SECTION -->
+        <section id="desserts" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">Desserts</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Cachapa con Miel -->
+                    <div class="dish-card">
+                        <img src="assets/cachapa_con_miel.png" alt="Cachapa con Miel | 489 - Sweet Corn Pancake & Honey" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Cachapa con Miel</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Sweet Corn Pancake & Honey</p>
+                            <p class="description">Traditional corn pancake drizzled with honey</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Dulce Oscuro -->
+                    <div class="dish-card">
+                        <img src="assets/dulce_oscuro.png" alt="Dulce Oscuro | 729 - Moist Dark Chocolate Cake" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Dulce Oscuro</h3>
+                            <span class="price">729</span>
+                            <p class="subtitle">Moist Dark Chocolate Cake</p>
+                            <p class="description">Decadent chocolate cake layered with dulce de leche, biscuit crumbs, caramelised makhana, rice crisps, and finished with mini meringues swirls</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Pina Fuego -->
+                    <div class="dish-card">
+                        <img src="assets/pina_fuego.png" alt="Pina Fuego | 829 - Pineapple Creme Brulee" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Pina Fuego</h3>
+                            <span class="price">829</span>
+                            <p class="subtitle">Pineapple Creme Brulee</p>
+                            <p class="description">Peruvian-style crème brûlée layered with fresh saffron ice cream and pineapple, topped with coconut and pineapple custard, finished with caramelized sugar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+        <!-- BEVERAGES SECTION -->
+        <section id="beverages" class="menu-section">
+            <div class="section-header">
+                <h2 class="section-title">Beverages</h2>
+                <div class="swipe-indicator">Swipe &rarr;</div>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="dish-carousel no-scrollbar">
+                    <!-- Card 1: Chicha Morada -->
+                    <div class="dish-card">
+                        <img src="assets/chicha_morada.png" alt="Chicha Morada | 689 - Purple Corn Drink" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Chicha Morada</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Purple Corn Drink</p>
+                            <p class="description">Sweet beverage brewed from purple corn with spices</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Brisa de Durazno Andino -->
+                    <div class="dish-card">
+                        <img src="assets/brisa_de_durazno_andino.png" alt="Brisa de Durazno Andino | 689 - Andean Peach Breeze" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Brisa de Durazno Andino</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Andean Peach Breeze</p>
+                            <p class="description">Crushed ice with green tea, pickled ginger, lime juice and peach syrup</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Bosque Rubi -->
+                    <div class="dish-card">
+                        <img src="assets/bosque_rubi.png" alt="Bosque Rubi | 689 - Crimson Nut Grove" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Bosque Rubi</h3>
+                            <span class="price">689</span>
+                            <p class="subtitle">Crimson Nut Grove</p>
+                            <p class="description">Hazelnut syrup with lime juice and cranberry juice</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Atardecer de la Selva -->
+                    <div class="dish-card">
+                        <img src="assets/atardecer_de_la_selva.png" alt="Atardecer de la Selva | 589 - Jungle Sunset" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Atardecer de la Selva</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Jungle Sunset</p>
+                            <p class="description">Lychee Juice, passion fruit syrup, lime juice and cola</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Agua Fresco -->
+                    <div class="dish-card">
+                        <img src="assets/agua_fresco.png" alt="Agua Fresco | 589 - Coconut and Cucumber Cooler" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Agua Fresco</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Coconut and Cucumber Cooler</p>
+                            <p class="description">Light crisp agua fresco made with fresh coconut water and cucumber</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Sandía Picante -->
+                    <div class="dish-card">
+                        <img src="assets/sandia_picante.png" alt="Sandía Picante | 589 - Watermelon & Ginger with Chillis" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Sandía Picante</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Watermelon & Ginger with Chillis</p>
+                            <p class="description">Refreshing watermelon juice with ginger and a touch of chili heat</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 7: Granada y Kión -->
+                    <div class="dish-card">
+                        <img src="assets/granada_y_kion.png" alt="Granada y Kión | 629 - Pomegranate & Ginger Ale" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Granada y Kión</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Pomegranate & Ginger Ale</p>
+                            <p class="description">Sparkling pomegranate ginger soda with a crisp finish</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 8: Limonada Cremosa -->
+                    <div class="dish-card">
+                        <img src="assets/limonada_cremosa.png" alt="Limonada Cremosa | 589 - Creamy Lemonade" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Limonada Cremosa</h3>
+                            <span class="price">589</span>
+                            <p class="subtitle">Creamy Lemonade</p>
+                            <p class="description">Smooth, frothy lemonade blended with milk and vanilla</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 9: Poncho de Mango -->
+                    <div class="dish-card">
+                        <img src="assets/poncho_de_mango.png" alt="Poncho de Mango | 629 - Spicy Mango Punch" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Poncho de Mango</h3>
+                            <span class="price">629</span>
+                            <p class="subtitle">Spicy Mango Punch</p>
+                            <p class="description">Ripe mango purée with lime and chili for a spicy-sweet punch</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 10: Kombucha Artesanal -->
+                    <div class="dish-card">
+                        <img src="assets/bosque_rubi.png" alt="Kombucha Artesanal | 489 - Artisanal Kombucha" class="full-dish-image">
+                        <div class="sr-only">
+                            <h3>Kombucha Artesanal</h3>
+                            <span class="price">489</span>
+                            <p class="subtitle">Artisanal Kombucha</p>
+                            <p class="description">Locally fermented probiotic tea infused with natural fruits and botanicals</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <img src="assets/riko_logo.png" alt="RIKO Logo" class="footer-brand-logo">
+        </div>
+        <p class="footer-text">&copy; 2026 RIKO. Menu Showcase Experience.</p>
+    </footer>
+
+    <!-- App Script -->
+    <script src="app.js"></script>
+</body>
+</html>

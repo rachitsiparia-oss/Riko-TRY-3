@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIKO CMS | Dashboard</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Admin Styling -->
+    <link rel="stylesheet" href="/static/admin.css">
+</head>
+<body>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo">
+                    <img src="/assets/riko_logo_circular.png" alt="Riko">
+                </div>
+                <div class="brand-info">
+                    <span class="brand-name">Riko Salon</span>
+                    <span class="brand-role">CMS Control</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section-title">Navigation</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/admin/dashboard?view=menu_cms" class="nav-link {% if current_view == 'menu_cms' %}active{% endif %}">
+                            <i class="fa-solid fa-utensils nav-icon"></i>
+                            <span class="nav-label">Menu CMS</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/dashboard?view=reservations" class="nav-link {% if current_view == 'reservations' %}active{% endif %}">
+                            <i class="fa-solid fa-inbox nav-icon"></i>
+                            <span class="nav-label">Reservations</span>
+                            <span class="badge-count" id="inboxBadgeCount" style="display: none;">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/dashboard?view=settings" class="nav-link {% if current_view == 'settings' %}active{% endif %}">
+                            <i class="fa-solid fa-gears nav-icon"></i>
+                            <span class="nav-label">Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/logout" class="nav-link">
+                            <i class="fa-solid fa-arrow-right-from-bracket nav-icon"></i>
+                            <span class="nav-label">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <div class="user-meta">
+                        <span class="user-name">Manager</span>
+                        <span class="user-status">Authorized</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Area -->
+        <main class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div class="breadcrumbs">
+                        <span class="breadcrumb-item">Admin Control</span>
+                        <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                        <span class="breadcrumb-item active">
+                            {% if current_view == 'menu_cms' %}Menu CMS
+                            {% elif current_view == 'reservations' %}Reservations
+                            {% elif current_view == 'settings' %}Settings
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <!-- Light / Dark Mode Toggle -->
+                    <button class="theme-toggle-btn" id="themeToggleBtn" title="Switch Theme">
+                        <i class="fa-solid fa-sun icon-light"></i>
+                        <i class="fa-solid fa-moon icon-dark"></i>
+                    </button>
+                    <!-- Logout Button -->
+                    <a href="/admin/logout" class="logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Workspace Body -->
+            <div class="workspace-body">
+                
+                {% if current_view == 'dashboard' %}
+                <!-- ==========================================
+                     DASHBOARD OVERVIEW VIEW
+                     ========================================== -->
+                <div class="dashboard-overview">
+                    <div class="overview-header">
+                        <h2>Hospitality Operations Summary</h2>
+                        <p>Real-time metrics for today's restaurant bookings and content updates.</p>
+                    </div>
+
+                    <!-- Counter Cards Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card stat-new">
+                            <div class="stat-icon"><i class="fa-solid fa-inbox"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">New Proposals</span>
+                                <h3 class="stat-value" id="dashboardCountNew">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-pending">
+                            <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Pending Reviews</span>
+                                <h3 class="stat-value" id="dashboardCountPending">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-confirmed">
+                            <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Confirmed Seats</span>
+                                <h3 class="stat-value" id="dashboardCountConfirmed">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-completed">
+                            <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Completed Visits</span>
+                                <h3 class="stat-value" id="dashboardCountCompleted">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-split-grid">
+                        <!-- Left pane: Quick links -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-bolt"></i> Operational Quick Links</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="quick-links-list">
+                                    <a href="/admin/dashboard?view=menu_cms" class="quick-link-item">
+                                        <div class="link-icon"><i class="fa-solid fa-utensils"></i></div>
+                                        <div class="link-info">
+                                            <h4>Manage Menu CMS</h4>
+                                            <p>Edit dynamic menu items, prices, descriptions, and categories.</p>
+                                        </div>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="/admin/dashboard?view=reservations" class="quick-link-item">
+                                        <div class="link-icon"><i class="fa-solid fa-inbox"></i></div>
+                                        <div class="link-info">
+                                            <h4>Review Reservations</h4>
+                                            <p>Open the live booking inbox with guest details and status actions.</p>
+                                        </div>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                    <a href="/" target="_blank" class="quick-link-item">
+                                        <div class="link-icon"><i class="fa-solid fa-globe"></i></div>
+                                        <div class="link-info">
+                                            <h4>View Live Public Website</h4>
+                                            <p>Open the cinematic customer facing booking and menus site.</p>
+                                        </div>
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right pane: Recent activities logs feed -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-clock-rotate-left"></i> Latest Operations Activity Feed</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-feed-list" id="dashboardRecentActivity">
+                                    <div class="loading-activity text-center" style="padding: 20px; color: var(--text-muted);">
+                                        <i class="fa-solid fa-circle-notch fa-spin"></i> Loading activity logs...
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% elif current_view == 'menu_cms' %}
+                <!-- ==========================================
+                     MENU CMS VIEW
+                     ========================================== -->
+                <div class="collection-header">
+                    <div>
+                        <h1 class="collection-title">{{ schemas[current_collection].label }}</h1>
+                        <p class="collection-description">Manage, search, and update details for items in this collection.</p>
+                    </div>
+                    <button class="btn-primary" id="openAddModalBtn">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add New Item</span>
+                    </button>
+                </div>
+
+                <!-- CMS Toolbar Controls -->
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="searchInput" class="search-input" placeholder="Search entries...">
+                        </div>
+                        
+                        <!-- Category Select (Dynamic filter for Menu items) -->
+                        <div class="filter-select-wrapper">
+                            <select id="categoryFilter" class="filter-select">
+                                <option value="">All Categories</option>
+                                <option value="For One">For One</option>
+                                <option value="Salads">Salads</option>
+                                <option value="Cold Dishes">Cold Dishes</option>
+                                <option value="Hot Dishes">Hot Dishes</option>
+                                <option value="Main">Main</option>
+                                <option value="Desserts">Desserts</option>
+                                <option value="Beverages">Beverages</option>
+                            </select>
+                        </div>
+
+                        <!-- Status Filter -->
+                        <div class="filter-select-wrapper">
+                            <select id="statusFilter" class="filter-select">
+                                <option value="">All Statuses</option>
+                                <option value="Published">Published</option>
+                                <option value="Draft">Draft</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="toolbar-right">
+                        <!-- Bulk Operations -->
+                        <div class="bulk-actions-wrapper" id="bulkActionsWrapper">
+                            <span class="bulk-count" id="bulkCount">0 selected</span>
+                            <select id="bulkActionSelect" class="bulk-select" disabled>
+                                <option value="" disabled selected>Bulk Actions</option>
+                                <option value="publish">Set to Published</option>
+                                <option value="draft">Set to Draft</option>
+                                <option value="delete">Delete Selected</option>
+                            </select>
+                            <button class="btn-secondary btn-sm" id="applyBulkBtn" disabled>Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Table Panel -->
+                <div class="table-card">
+                    <div class="table-wrapper">
+                        <table class="data-table" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th width="40" class="checkbox-cell">
+                                        <label class="custom-checkbox-container">
+                                            <input type="checkbox" id="selectAllCheckbox">
+                                            <span class="custom-checkbox"></span>
+                                        </label>
+                                    </th>
+                                    {% for field in schemas[current_collection].fields %}
+                                    <th class="sortable-header" data-column="{{ field.name }}">
+                                        <span>{{ field.label }}</span>
+                                        <i class="fa-solid fa-sort sort-icon"></i>
+                                    </th>
+                                    {% endfor %}
+                                    <th width="100" style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Dynamic rows loaded via JS API -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Table Pagination Footer -->
+                    <div class="pagination-footer">
+                        <div class="pagination-info" id="paginationInfo">
+                            Showing 0 to 0 of 0 entries
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" id="prevPageBtn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                            <div class="pagination-numbers" id="paginationNumbers">
+                                <!-- Pages dynamically built -->
+                            </div>
+                            <button class="pagination-btn" id="nextPageBtn" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                {% elif current_view == 'reservations' %}
+                <!-- ==========================================
+                     RESERVATIONS INBOX VIEW
+                     ========================================== -->
+                <div class="collection-header">
+                    <div>
+                        <h1 class="collection-title">Reservations</h1>
+                        <p class="collection-description">Live booking requests from Supabase, arranged as a restaurant operations inbox.</p>
+                    </div>
+                </div>
+
+                <div class="inbox-layout">
+                    <section class="inbox-list-pane">
+                        <div class="inbox-list-header">
+                            <div class="inbox-search">
+                                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                <input type="text" id="inboxSearchInput" class="search-input" placeholder="Search guests or phone...">
+                            </div>
+                            <div class="inbox-tabs">
+                                <button class="inbox-tab active" data-date="all">All</button>
+                                <button class="inbox-tab" data-date="today">Today</button>
+                                <button class="inbox-tab" data-date="tomorrow">Tomorrow</button>
+                                <button class="inbox-tab" data-date="upcoming">Upcoming</button>
+                                <button class="inbox-tab" data-date="custom">Range</button>
+                            </div>
+                            <div class="custom-date-inputs" id="customDateRangeInputs" style="display: none;">
+                                <div class="date-input-group">
+                                    <label for="customStartDate">Start</label>
+                                    <input type="date" id="customStartDate">
+                                </div>
+                                <div class="date-input-group">
+                                    <label for="customEndDate">End</label>
+                                    <input type="date" id="customEndDate">
+                                </div>
+                                <button class="btn-secondary btn-sm" id="applyCustomDateBtn">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="inbox-status-filters">
+                            <button class="status-filter active" data-status="All">All <span class="filter-count" id="countAll">0</span></button>
+                            <button class="status-filter" data-status="New">New <span class="filter-count" id="countNew">0</span></button>
+                            <button class="status-filter" data-status="Pending">Pending <span class="filter-count" id="countPending">0</span></button>
+                            <button class="status-filter" data-status="Confirmed">Confirmed <span class="filter-count" id="countConfirmed">0</span></button>
+                            <button class="status-filter" data-status="Completed">Completed <span class="filter-count" id="countCompleted">0</span></button>
+                            <button class="status-filter" data-status="Cancelled">Cancelled <span class="filter-count" id="countCancelled">0</span></button>
+                        </div>
+
+                        <div class="inbox-scroll-container" id="inboxListBody">
+                            <div class="text-center" style="padding: 40px; color: var(--gold);">
+                                <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.8rem; margin-bottom: 10px;"></i>
+                                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em;">Syncing Inbox...</div>
+                            </div>
+                        </div>
+
+                        <footer class="inbox-pagination-footer">
+                            <span id="inboxPaginationInfo">0 proposals</span>
+                            <div class="inbox-pagination-btns">
+                                <button class="pagination-btn" id="inboxPrevPageBtn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                                <button class="pagination-btn" id="inboxNextPageBtn" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </footer>
+                    </section>
+
+                    <section class="inbox-details-pane">
+                        <div class="inbox-details-placeholder" id="detailsPlaceholder">
+                            <i class="fa-regular fa-envelope-open placeholder-icon"></i>
+                            <h3>Select a reservation</h3>
+                            <p>Choose a booking request from the list to review guest details, timing, requests, and status.</p>
+                        </div>
+
+                        <div class="inbox-details-content" id="detailsContent" style="display: none;">
+                            <div class="details-action-bar">
+                                <span class="details-status-badge status-new" id="detailsStatusBadge">New</span>
+                                <div class="details-actions">
+                                    <button class="btn-action confirm-action" id="actionConfirmBtn"><i class="fa-solid fa-check"></i> Confirm</button>
+                                    <button class="btn-action pending-action" id="actionPendingBtn"><i class="fa-solid fa-clock"></i> Pending</button>
+                                    <button class="btn-action completed-action" id="actionCompleteBtn"><i class="fa-solid fa-circle-check"></i> Complete</button>
+                                    <button class="btn-action cancelled-action" id="actionCancelBtn"><i class="fa-solid fa-ban"></i> Cancel</button>
+                                    <button class="btn-action-danger" id="actionDeleteBtn"><i class="fa-regular fa-trash-can"></i> Delete</button>
+                                </div>
+                            </div>
+
+                            <div class="details-header-card">
+                                <div class="guest-initials" id="detailsInitials">--</div>
+                                <div class="guest-meta-block">
+                                    <h2 id="detailsGuestName">Guest</h2>
+                                    <div class="details-submit-time">Synced <span id="detailsSubmissionTime">--</span></div>
+                                </div>
+                            </div>
+
+                            <div class="details-grid">
+                                <div>
+                                    <div class="details-label"><i class="fa-solid fa-phone"></i> Phone</div>
+                                    <div class="details-val" id="detailsPhone">--</div>
+                                </div>
+                                <div>
+                                    <div class="details-label"><i class="fa-solid fa-users"></i> Guests</div>
+                                    <div class="details-val" id="detailsGuests">--</div>
+                                </div>
+                                <div>
+                                    <div class="details-label"><i class="fa-solid fa-calendar-day"></i> Date</div>
+                                    <div class="details-val" id="detailsDate">--</div>
+                                </div>
+                                <div>
+                                    <div class="details-label"><i class="fa-solid fa-clock"></i> Time</div>
+                                    <div class="details-val" id="detailsTime">--</div>
+                                </div>
+                            </div>
+
+                            <div class="details-request-section">
+                                <div class="details-label"><i class="fa-regular fa-message"></i> Special Request</div>
+                                <div class="details-request-box" id="detailsSpecialRequests">--</div>
+                            </div>
+
+                            <div class="details-log-section">
+                                <div class="details-label"><i class="fa-solid fa-timeline"></i> Activity</div>
+                                <div class="timeline-log-list" id="detailsLogList">
+                                    <div class="timeline-log-item">No action logs recorded.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                {% elif current_view == 'settings' %}
+                <!-- ==========================================
+                     SETTINGS VIEW
+                     ========================================== -->
+                <div class="dashboard-settings">
+                    <div class="settings-header">
+                        <h2>System Configuration</h2>
+                        <p>Overview of Riko operations engine credentials and parameters.</p>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <div class="card-header">
+                                <h3><i class="fa-solid fa-user-lock"></i> Security Credentials</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="settings-info-row">
+                                    <span class="info-label">Authentication Type:</span>
+                                    <span class="info-val badge-mono">Security Password Auth</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="info-label">Environment Variable Config:</span>
+                                    <span class="info-val text-monospace" style="color: var(--gold);">ADMIN_PASSWORD</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="info-label">Password Storage:</span>
+                                    <span class="info-val text-warning-light"><i class="fa-solid fa-shield-halved"></i> Read from secure local `.env` configuration file. Excluded from code assets.</span>
+                                </div>
+                                <div class="settings-note" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                                    <p>To change the admin password, please edit the <code>ADMIN_PASSWORD</code> key value directly inside the local <code>.env</code> project root file on the server host environment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </main>
+
+    </div>
+
+    <!-- ADD ITEM MODAL -->
+    <div class="modal-backdrop" id="addModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title">Create New Item</h3>
+                <button class="modal-close" id="closeAddModalBtn">&times;</button>
+            </div>
+            <form id="addItemForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    {% for field in schemas[current_collection].fields %}
+                    <div class="form-group">
+                        <label class="form-label" for="add_{{ field.name }}">
+                            {{ field.label }}
+                            {% if field.required %}<span class="field-required">*</span>{% endif %}
+                        </label>
+                        
+                        {% if field.type == 'text' %}
+                        <input type="text" id="add_{{ field.name }}" name="{{ field.name }}" class="form-input" {% if field.required %}required{% endif %}>
+                        
+                        {% elif field.type == 'slug' %}
+                        <input type="text" id="add_{{ field.name }}" name="{{ field.name }}" class="form-input text-monospace bg-readonly" readonly {% if field.required %}required{% endif %} placeholder="auto-generated-from-name">
+                        
+                        {% elif field.type == 'longtext' %}
+                        <textarea id="add_{{ field.name }}" name="{{ field.name }}" class="form-input form-textarea" rows="4" {% if field.required %}required{% endif %}></textarea>
+                        
+                        {% elif field.type == 'number' %}
+                        <input type="number" id="add_{{ field.name }}" name="{{ field.name }}" class="form-input" step="0.01" min="0" {% if field.required %}required{% endif %}>
+                        
+                        {% elif field.type == 'select' %}
+                        <select id="add_{{ field.name }}" name="{{ field.name }}" class="form-input form-select" {% if field.required %}required{% endif %}>
+                            {% if field.default is not defined %}
+                            <option value="" disabled selected>Select option</option>
+                            {% endif %}
+                            {% for opt in field.options %}
+                            <option value="{{ opt }}" {% if field.default == opt %}selected{% endif %}>{{ opt }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                        {% elif field.type == 'image' %}
+                        <div class="image-upload-wrapper">
+                            <div class="image-upload-preview" id="add_image_preview_box">
+                                <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                                <span>Preview Upload</span>
+                            </div>
+                            <div class="image-upload-inputs">
+                                <input type="file" id="add_{{ field.name }}" name="{{ field.name }}" class="image-file-input" accept=".jpg,.png,.webp,.jpeg" {% if field.required %}required{% endif %}>
+                                <label for="add_{{ field.name }}" class="image-upload-label">Choose Image File</label>
+                                <span class="image-upload-specs">JPG, PNG, WEBP allowed.</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="cancelAddBtn">Cancel</button>
+                    <button type="submit" class="btn-primary" id="saveAddBtn">Save Collection Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SLIDE PANEL FOR INSTANT EDIT -->
+    <div class="slide-panel-backdrop" id="editSlidePanelBackdrop"></div>
+    <div class="slide-panel" id="editSlidePanel">
+        <div class="slide-panel-header">
+            <div>
+                <h3 class="slide-panel-title">Edit Details</h3>
+                <span class="slide-panel-subtitle" id="editItemSubtitle">Item ID: #0</span>
+            </div>
+            <div class="slide-panel-actions">
+                <span class="saving-indicator" id="savingIndicator">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    <span>Saving...</span>
+                </span>
+                <button class="slide-panel-close" id="closeEditSlidePanelBtn">&times;</button>
+            </div>
+        </div>
+        
+        <form id="editItemForm" class="slide-panel-body" enctype="multipart/form-data">
+            <input type="hidden" name="id" id="edit_id">
+            {% for field in schemas[current_collection].fields %}
+            <div class="form-group">
+                <label class="form-label" for="edit_{{ field.name }}">
+                    {{ field.label }}
+                    {% if field.required %}<span class="field-required">*</span>{% endif %}
+                </label>
+                
+                {% if field.type == 'text' %}
+                <input type="text" id="edit_{{ field.name }}" name="{{ field.name }}" class="form-input edit-autosave-trigger" {% if field.required %}required{% endif %}>
+                
+                {% elif field.type == 'slug' %}
+                <input type="text" id="edit_{{ field.name }}" name="{{ field.name }}" class="form-input text-monospace bg-readonly" readonly {% if field.required %}required{% endif %}>
+                
+                {% elif field.type == 'longtext' %}
+                <textarea id="edit_{{ field.name }}" name="{{ field.name }}" class="form-input form-textarea edit-autosave-trigger" rows="5" {% if field.required %}required{% endif %}></textarea>
+                
+                {% elif field.type == 'number' %}
+                <input type="number" id="edit_{{ field.name }}" name="{{ field.name }}" class="form-input edit-autosave-trigger" step="0.01" min="0" {% if field.required %}required{% endif %}>
+                
+                {% elif field.type == 'select' %}
+                <select id="edit_{{ field.name }}" name="{{ field.name }}" class="form-input form-select edit-autosave-trigger" {% if field.required %}required{% endif %}>
+                    {% for opt in field.options %}
+                    <option value="{{ opt }}">{{ opt }}</option>
+                    {% endfor %}
+                </select>
+                
+                {% elif field.type == 'image' %}
+                <div class="image-upload-wrapper">
+                    <div class="image-upload-preview flex-column" id="edit_image_preview_box">
+                        <img src="" id="edit_image_current_src" alt="Current Image" class="edit-preview-thumbnail">
+                    </div>
+                    <div class="image-upload-inputs">
+                        <input type="file" id="edit_{{ field.name }}" name="{{ field.name }}" class="image-file-input edit-image-upload-trigger" accept=".jpg,.png,.webp,.jpeg">
+                        <label for="edit_{{ field.name }}" class="image-upload-label">Upload New Image</label>
+                        <span class="image-upload-specs">Leave blank to keep existing image</span>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div class="modal-backdrop" id="deleteModal">
+        <div class="modal-card modal-card-sm">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm Deletion</h3>
+                <button class="modal-close" id="closeDeleteModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to permanently delete <strong id="deleteItemName">this item</strong>?</p>
+                <p class="text-warning-light"><i class="fa-solid fa-triangle-exclamation"></i> Warning: This operation cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" id="cancelDeleteBtn">Cancel</button>
+                <button type="button" class="btn-danger" id="confirmDeleteBtn">Delete Permanently</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL FOR IMAGE PREVIEW -->
+    <div class="modal-backdrop" id="lightboxModal" style="background: rgba(0,0,0,0.95); z-index: 100000;">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="closeLightboxBtn">&times;</button>
+            <img src="" id="lightboxImg" alt="Lightbox Preview" class="lightbox-image">
+            <div class="lightbox-caption" id="lightboxCaption">Image Caption</div>
+        </div>
+    </div>
+
+    <!-- Global JS Schema Definition variables -->
+    <script>
+        const CURRENT_VIEW = "{{ current_view }}";
+        const CURRENT_COLLECTION = "{{ current_collection }}";
+        const COLLECTION_FIELDS = {{ schemas[current_collection].fields | tojson if current_collection in schemas else '[]' }};
+    </script>
+    
+    <!-- Admin Client script -->
+    {% if current_view == 'menu_cms' %}
+    <script src="/static/admin.js"></script>
+    {% else %}
+    <script src="/static/admin_inbox.js"></script>
+    {% endif %}
+</body>
+</html>

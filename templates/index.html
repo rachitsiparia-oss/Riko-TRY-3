@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIKO EXPERIENCE | Cinematic Nikkei Culinary Destination</title>
+    <meta name="description" content="Enter RIKO Experience. An immersive celebration of contemporary Nikkei fusion cuisine, crafted cocktails, and world-class luxury hospitality in India.">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Cinematic Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Cinematic Preloader -->
+    <div id="preloader">
+        <div class="preloader-logo-container">
+            <div class="preloader-glow"></div>
+            <div class="preloader-ring"></div>
+            <img src="assets/riko_logo_circular.png" alt="RIKO Crest" class="preloader-logo">
+        </div>
+        <div class="preloader-text">Riko Experience</div>
+    </div>
+
+    <!-- Floating Luxury Header -->
+    <header>
+        <div class="brand-container">
+            <img src="assets/riko_logo_circular.png" alt="RIKO Circular Crest" class="logo-circular-nav">
+            <div class="brand-text-luxury">
+                <div class="brand-title">Riko</div>
+                <div class="brand-subtitle">South American Cuisine</div>
+            </div>
+        </div>
+        <nav>
+            <ul class="nav-links-editorial">
+                <li class="nav-item-luxury active" data-target="hero" data-hover="expand">Home</li>
+                <li class="nav-item-luxury" data-target="about" data-hover="expand">Story</li>
+                <li class="nav-item-luxury" data-target="experiences" data-hover="expand">Experiences</li>
+                <li class="nav-item-luxury" data-target="menu-experience" data-hover="expand">Menu</li>
+                <li class="nav-item-luxury" data-target="location" data-hover="expand">Location</li>
+            </ul>
+        </nav>
+        <button class="btn-header-reserve" onclick="document.getElementById('reservations').scrollIntoView({behavior: 'smooth'})" data-hover="expand">Reserve Table</button>
+    </header>
+
+    <!-- Main Immersive Visual Content -->
+    <main>
+
+        <!-- IMMERSIVE HERO SECTION -->
+        <section id="hero">
+            <div class="hero-overlay-dark"></div>
+            <div class="hero-media-wrapper">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop" alt="RIKO Chef Plating" class="hero-visual-bg">
+            </div>
+            
+            <div class="hero-content-architecture">
+                <div class="hero-sub-luxury">Riko Experience</div>
+                <h1 class="hero-title-oversized">A Journey<br><span>Beyond Dining</span></h1>
+                <p class="hero-desc-narrative">An immersive celebration of contemporary Nikkei culinary art, Japanese precision, and unforgettable hospitality.</p>
+                <div class="hero-btn-group-luxury">
+                    <button class="btn-luxury-solid" onclick="document.getElementById('reservations').scrollIntoView({behavior: 'smooth'})" data-hover="expand">Reserve Table</button>
+                    <button class="btn-luxury-outline" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" data-hover="expand">Explore Experience</button>
+                </div>
+            </div>
+
+            <div class="hero-scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})" data-hover="expand">
+                <div class="scroll-indicator-text">Scroll Down</div>
+                <div class="scroll-indicator-bar"></div>
+            </div>
+        </section>
+
+        <!-- EDITORIAL STORY / ABOUT SECTION -->
+        <section id="about" class="section-reveal">
+            <div class="about-split-grid">
+                <div class="about-image-narrative" data-hover="expand">
+                    <div class="about-image-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200&auto=format&fit=crop" alt="RIKO Architectural Interior" class="about-visual">
+                </div>
+                <div class="about-content">
+                    <div class="editorial-tag-gold">Dining Reimagined</div>
+                    <h2 class="editorial-heading-oversized">Crafting Culinary<br><span>Emotion</span></h2>
+                    <p class="editorial-desc-highlight">Where traditional Japanese precision converges with bold South American textures to redefine fine dining in India.</p>
+                    <p class="editorial-body-luxury">Riko Experience represents a daring boundary-pushing showcase of Nikkei cuisine. Every single dish is treated as a three-dimensional architectural installation, composed of rare seasonal ingredients and presented with art-gallery storytelling. Here, culinary craftsmanship meets high-end luxury hospitality.</p>
+                    <div class="editorial-quote-card">
+                        "Every ingredient has a lineage, and every dish tells an ancestral story reimagined for the modern epicurean."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIGNATURE EXPERIENCES -->
+        <section id="experiences" class="section-reveal">
+            <div class="experiences-header-row">
+                <div>
+                    <div class="editorial-tag-gold">Curated Showcase</div>
+                    <h2 class="editorial-heading-oversized" style="margin-bottom: 0;">Sensory<br><span>Discoveries</span></h2>
+                </div>
+                <p class="editorial-body-luxury" style="max-width: 400px; margin-bottom: 0;">Four bespoke journeys of sensory refinement, handpicked to present the elite standard of contemporary luxury dining.</p>
+            </div>
+            
+            <div class="experiences-grid-editorial">
+                <!-- Experience Card 1: Chef's Creations -->
+                <div class="experience-card-bespoke" data-hover="expand">
+                    <div class="experience-card-overlay"></div>
+                    <div class="experience-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=600&auto=format&fit=crop" alt="Chef's Creations" class="experience-visual">
+                    </div>
+                    <div class="experience-card-content">
+                        <h3 class="experience-card-heading">Chef's Table</h3>
+                        <p class="experience-card-desc">An intimate visual narrative of visual presentation, Japanese precision, and seasonal masterpieces crafted live.</p>
+                        <a href="#menu-experience" class="experience-card-link-gold">Explore Creations <span>&rarr;</span></a>
+                    </div>
+                </div>
+
+                <!-- Experience Card 2: Signature Cocktails -->
+                <div class="experience-card-bespoke" data-hover="expand">
+                    <div class="experience-card-overlay"></div>
+                    <div class="experience-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=600&auto=format&fit=crop" alt="Signature Cocktails" class="experience-visual">
+                    </div>
+                    <div class="experience-card-content">
+                        <h3 class="experience-card-heading">Liquid Alchemy</h3>
+                        <p class="experience-card-desc">Artisanal, slow-poured infusions combining rare Japanese botanicals and Latin bitters in dramatic ambient light.</p>
+                        <a href="#menu-experience" class="experience-card-link-gold">Explore Spirits <span>&rarr;</span></a>
+                    </div>
+                </div>
+
+                <!-- Experience Card 3: Asian Flavours -->
+                <div class="experience-card-bespoke" data-hover="expand">
+                    <div class="experience-card-overlay"></div>
+                    <div class="experience-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=600&auto=format&fit=crop" alt="Nikkei Heritage" class="experience-visual">
+                    </div>
+                    <div class="experience-card-content">
+                        <h3 class="experience-card-heading">Nikkei Heritage</h3>
+                        <p class="experience-card-desc">Exploring the historical convergence of Peruvian dynamic ingredients and refined Japanese structure.</p>
+                        <a href="#menu-experience" class="experience-card-link-gold">Explore Flavours <span>&rarr;</span></a>
+                    </div>
+                </div>
+
+                <!-- Experience Card 4: Curated Dining -->
+                <div class="experience-card-bespoke" data-hover="expand">
+                    <div class="experience-card-overlay"></div>
+                    <div class="experience-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=600&auto=format&fit=crop" alt="Curated Dining" class="experience-visual">
+                    </div>
+                    <div class="experience-card-content">
+                        <h3 class="experience-card-heading">Private Salon</h3>
+                        <p class="experience-card-desc">Bespoke spatial environments customized with personal culinary curations and low-key atmospheric lighting.</p>
+                        <a href="#reservations" class="experience-card-link-gold">Book Experience <span>&rarr;</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDITORIAL CULINARY GALLERY -->
+        <section id="gallery" class="section-reveal">
+            <div class="gallery-headline-row">
+                <div class="editorial-tag-gold font-sans">Culinary Gallery</div>
+                <h2 class="editorial-heading-oversized">Artistic<br><span>Installations</span></h2>
+            </div>
+            
+            <div class="gallery-grid-editorial">
+                <!-- Item 1 -->
+                <div class="gallery-item-bespoke col-span-4" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Charred Corn Infusions</h3>
+                        <div class="gallery-item-tag">Chef Platings</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 1" class="gallery-visual">
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item-bespoke col-span-8" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Liquid Embers</h3>
+                        <div class="gallery-item-tag">Bespoke Mixology</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 2" class="gallery-visual">
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item-bespoke col-span-6" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Artisan Glazing</h3>
+                        <div class="gallery-item-tag">Attention to Detail</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 3" class="gallery-visual">
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item-bespoke col-span-3" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Raw Precision</h3>
+                        <div class="gallery-item-tag">Nikkei Plating</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 4" class="gallery-visual">
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item-bespoke col-span-3" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Sweet Nectar</h3>
+                        <div class="gallery-item-tag">Deconstructed Desserts</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 5" class="gallery-visual">
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item-bespoke col-span-7" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Smoky Bitters</h3>
+                        <div class="gallery-item-tag">Craft Cocktails</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 6" class="gallery-visual">
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="gallery-item-bespoke col-span-5" data-hover="expand">
+                    <div class="gallery-hover-overlay">
+                        <h3 class="gallery-item-title">Gourmet Cures</h3>
+                        <div class="gallery-item-tag">Cold Tapas</div>
+                    </div>
+                    <div class="gallery-visual-wrapper">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=600&auto=format&fit=crop" alt="Culinary Art 7" class="gallery-visual">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMMERSIVE INTERIOR SHOWCASE -->
+        <section id="immersive-interior">
+            <div class="interior-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1485686531765-ba63b07845a7?q=80&w=1600&auto=format&fit=crop" alt="RIKO Luxury Atmosphere" class="interior-visual-bg">
+            <div class="interior-content">
+                <blockquote class="interior-quote-text">"Every architectural light, marble grain, and plate layout is carefully curated to create a lasting spatial memory."</blockquote>
+                <div class="interior-quote-author">Riko Hospitality Design Team</div>
+            </div>
+        </section>
+
+        <!-- EMBEDDED INTERACTIVE MENU EXPERIENCE -->
+        <section id="menu-experience" class="section-reveal">
+            <div class="menu-experience-glow-left"></div>
+            <div class="menu-experience-glow-right"></div>
+            
+            <div class="menu-experience-header">
+                <div class="editorial-tag-gold">Interactive Menu</div>
+                <h2 class="editorial-heading-oversized">Bespoke<br><span>Curations</span></h2>
+                <p class="editorial-body-luxury" style="max-width: 550px;">Browse our contemporary creations. Switch categories below and swipe to center- spotlight our signature visual cards.</p>
+            </div>
+
+            <!-- Sticky menu categories Navigation Buttons -->
+            <div class="menu-tabs-luxury">
+                <button class="menu-tab-btn-luxury active" data-target="for-one" data-hover="expand">For One</button>
+                <button class="menu-tab-btn-luxury" data-target="salads" data-hover="expand">Salads</button>
+                <button class="menu-tab-btn-luxury" data-target="cold-dishes" data-hover="expand">Cold Dishes</button>
+                <button class="menu-tab-btn-luxury" data-target="hot-dishes" data-hover="expand">Hot Dishes</button>
+                <button class="menu-tab-btn-luxury" data-target="main" data-hover="expand">Main</button>
+                <button class="menu-tab-btn-luxury" data-target="desserts" data-hover="expand">Desserts</button>
+                <button class="menu-tab-btn-luxury" data-target="beverages" data-hover="expand">Beverages</button>
+            </div>
+
+            <!-- Dynamically Loaded Menu Sections -->
+            <div class="menu-sections-wrapper">
+                {% for category in categories %}
+                <!-- {{ category | upper }} CATEGORY SECTION -->
+                <section id="{{ category_ids[category] }}" class="menu-category-section{% if loop.first %} active{% endif %}">
+                    <div class="menu-carousel-wrapper">
+                        <div class="menu-dish-carousel no-scrollbar">
+                            {% for item in items_by_category[category] %}
+                            <!-- Card {{ loop.index }}: {{ item.name }} -->
+                            <div class="menu-dish-card-bespoke" data-hover="expand">
+                                <img src="{{ item.image_url }}" alt="{{ item.name }} | {{ item.price | int }} - {{ item.description }}" class="menu-dish-visual" loading="lazy">
+                                <div class="menu-dish-info-overlay">
+                                    <div class="menu-dish-header-row">
+                                        <h3 class="menu-dish-name">{{ item.name }}</h3>
+                                        <span class="menu-dish-price">{{ item.price | int }}</span>
+                                    </div>
+                                    <p class="menu-dish-desc">{{ item.description }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="menu-dots-container"></div>
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- CHEF'S TABLE NARRATIVE SECTION -->
+        <section id="chefs-table" class="section-reveal">
+            <div class="chefs-table-grid">
+                <div class="chefs-table-content">
+                    <div class="editorial-tag-gold">The Kitchen</div>
+                    <h2 class="editorial-heading-oversized">Craftsmanship &amp;<br><span>Attention</span></h2>
+                    <p class="editorial-desc-highlight">A meticulous performance in dark wood, raw fire, and volcanic slate.</p>
+                    <p class="editorial-body-luxury">Our kitchen operates under absolute discipline. Directed by Michelin-experienced talent, our team transforms raw South American materials using precise Japanese structures. Searing, emulsifying, and slow-infusing, we compose plate narratives that deliver a powerful sensory strike to your dining experience.</p>
+                    <button class="btn-luxury-solid" onclick="document.getElementById('reservations').scrollIntoView({behavior: 'smooth'})" data-hover="expand">Experience The Table</button>
+                </div>
+                <div class="chefs-table-visual-narrative" data-hover="expand">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1200&auto=format&fit=crop" alt="RIKO Chef Live Cooking" class="chefs-table-visual">
+                </div>
+            </div>
+        </section>
+
+        <!-- PREMIUM RESERVATION EXPERIENCE -->
+        <section id="reservations" class="section-reveal">
+            <div class="reservation-gradient-glow"></div>
+            <div class="reservation-container">
+                <div class="reservation-card-glass">
+                    <h2 class="reservation-headline-editorial">Secure Your Seat</h2>
+                    <p class="reservation-sub-text">Bespoke reservations are extremely limited. Please submit your request below.</p>
+                    
+                    <form class="reservation-form-editorial">
+                        <div class="form-group-bespoke">
+                            <label class="form-label-luxury">Full Name</label>
+                            <input type="text" name="name" class="form-input-bespoke" required placeholder="Lord/Lady Alexander" data-hover="expand">
+                        </div>
+                        <div class="form-group-bespoke">
+                            <label class="form-label-luxury">Phone Coordinates</label>
+                            <input type="tel" name="phone" class="form-input-bespoke" required placeholder="+91 XXXXX XXXXX" data-hover="expand">
+                        </div>
+                        <div class="form-group-bespoke">
+                            <label class="form-label-luxury">Guests Count</label>
+                            <select name="guests" class="form-input-bespoke" required data-hover="expand">
+                                <option value="2">2 Guests (Salon)</option>
+                                <option value="4">4 Guests (Alcov)</option>
+                                <option value="6">6 Guests (Chef's Table)</option>
+                                <option value="8">8+ Guests (Private Room)</option>
+                            </select>
+                        </div>
+                        <div class="form-group-bespoke">
+                            <label class="form-label-luxury">Desired Date</label>
+                            <input type="date" name="date" class="form-input-bespoke" required data-hover="expand">
+                        </div>
+                        <div class="form-group-bespoke">
+                            <label class="form-label-luxury">Desired Time</label>
+                            <input type="time" name="time" class="form-input-bespoke" required data-hover="expand">
+                        </div>
+                        <div class="form-group-bespoke">
+                            <label class="form-label-luxury">Special Requests</label>
+                            <input type="text" name="special_request" class="form-input-bespoke" placeholder="Dietary adjustments, occasion note" data-hover="expand">
+                        </div>
+                        <button type="submit" class="btn-reserve-submit" data-hover="expand">Submit Booking Proposal</button>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SUCCESS RESERVATION MODAL -->
+        <div class="reservation-success-overlay">
+            <div class="reservation-success-card">
+                <div class="success-icon-gold"><i class="fa-regular fa-circle-check"></i></div>
+                <h3 class="editorial-heading-oversized" style="font-size: 2.2rem; margin-bottom: 15px;">Proposal Received</h3>
+                <p class="editorial-body-luxury" style="margin-bottom: 0;">Our private concierge team will verify availability and reach out to confirm your booking within the hour. Thank you for choosing Riko.</p>
+            </div>
+        </div>
+
+        <!-- INSTAGRAM / SOCIAL GALLERY -->
+        <section id="social-feed" class="section-reveal">
+            <div class="social-headline">
+                <div class="editorial-tag-gold">Social Ambiance</div>
+                <h2 class="editorial-heading-oversized" style="margin-bottom: 0;">Visuals from<span> the Salon</span></h2>
+            </div>
+            
+            <div class="social-grid-luxury">
+                <!-- Item 1 -->
+                <div class="social-item-bespoke" data-hover="expand">
+                    <div class="social-hover-overlay">
+                        <i class="fa-brands fa-instagram social-icon-luxury"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop" alt="Social 1" class="social-visual">
+                </div>
+                <!-- Item 2 -->
+                <div class="social-item-bespoke" data-hover="expand">
+                    <div class="social-hover-overlay">
+                        <i class="fa-brands fa-instagram social-icon-luxury"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=600&auto=format&fit=crop" alt="Social 2" class="social-visual">
+                </div>
+                <!-- Item 3 -->
+                <div class="social-item-bespoke" data-hover="expand">
+                    <div class="social-hover-overlay">
+                        <i class="fa-brands fa-instagram social-icon-luxury"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600&auto=format&fit=crop" alt="Social 3" class="social-visual">
+                </div>
+                <!-- Item 4 -->
+                <div class="social-item-bespoke" data-hover="expand">
+                    <div class="social-hover-overlay">
+                        <i class="fa-brands fa-instagram social-icon-luxury"></i>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=600&auto=format&fit=crop" alt="Social 4" class="social-visual">
+                </div>
+            </div>
+        </section>
+
+        <!-- LOCATION & MAP CARD SECTION -->
+        <section id="location" class="section-reveal">
+            <div class="location-grid-architecture">
+                <div class="location-info-card-glass">
+                    <div class="editorial-tag-gold">The Coordinates</div>
+                    <h2 class="editorial-heading-oversized" style="font-size: 2.8rem;">Come &amp;<br><span>Experience</span></h2>
+                    
+                    <div class="location-detail-group">
+                        <div class="location-detail-title">Our Salon</div>
+                        <div class="location-detail-text">Riko Restaurant, 3rd Floor, The High-Line Towers, UB City, Bangalore, India</div>
+                    </div>
+
+                    <div class="location-detail-group">
+                        <div class="location-detail-title">Opening Hours</div>
+                        <div class="location-detail-text" style="font-size: 1.15rem;">Daily Seating: 18:30 – 01:00</div>
+                        <div class="location-detail-sub-text">Concierge Desk open from 10:00</div>
+                    </div>
+
+                    <div class="location-detail-group">
+                        <div class="location-detail-title">Contact Coordinates</div>
+                        <div class="location-detail-text" style="font-size: 1.15rem;">+91 80 4967 8899</div>
+                        <div class="location-detail-sub-text">concierge@rikoexperience.com</div>
+                    </div>
+                </div>
+                
+                <div class="map-container-bespoke" data-hover="expand">
+                    <div class="map-marker-glow"></div>
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1200&auto=format&fit=crop" alt="Luxury Location map styling" class="map-visual-bg">
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MINIMAL LUXURY FOOTER -->
+    <footer>
+        <div class="footer-top-row-editorial">
+            <div class="footer-logo-circular-wrapper">
+                <img src="assets/riko_logo_circular.png" alt="Riko Crest" class="footer-logo-circular">
+                <div class="footer-brand-title">Riko<span>.</span></div>
+            </div>
+            <ul class="footer-links-editorial">
+                <li><a href="#hero" class="footer-link-item" data-hover="expand">Home</a></li>
+                <li><a href="#about" class="footer-link-item" data-hover="expand">Story</a></li>
+                <li><a href="#experiences" class="footer-link-item" data-hover="expand">Experiences</a></li>
+                <li><a href="#menu-experience" class="footer-link-item" data-hover="expand">Menu</a></li>
+                <li><a href="#reservations" class="footer-link-item" data-hover="expand">Book Table</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom-row">
+            <div class="footer-copyright">&copy; 2026 RIKO. Contemporary Nikkei Fine Dining Showcase. Crafted in <span>maroon &amp; gold</span>.</div>
+            <div class="footer-socials">
+                <a href="#" style="margin-right: 15px;" data-hover="expand"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" style="margin-right: 15px;" data-hover="expand"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" data-hover="expand"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis for smooth scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+    <!-- Bespoke Interaction script -->
+    <script src="app.js"></script>
+</body>
+</html>
