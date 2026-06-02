@@ -25,13 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Initialize theme on load
     initTheme();
 
-    // 4. Start Real-time Stream Connection
-    initRealtimeStream();
-
-    // 5. Load active view controller
+    // 4. Load active view controller
     initViewController();
 
-    // 6. Start fallback polling to guarantee sync
+    // 5. Poll for production/serverless-friendly live updates.
     let fallbackPollInterval = null;
     function startFallbackPolling() {
         if (fallbackPollInterval) clearInterval(fallbackPollInterval);
@@ -41,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (state.view === 'dashboard') {
                 loadDashboardDetails();
             }
-        }, 10000); // 10 seconds interval
+        }, 15000);
     }
     startFallbackPolling();
 
@@ -67,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let eventSource = null;
 
     function initRealtimeStream() {
+        if (!window.EventSource) return;
         if (eventSource) {
             eventSource.close();
         }
@@ -75,7 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // General message event handler
         eventSource.onmessage = (event) => {
-            const data = JSON.parse(event.data);
+            let data = {};
+            try {
+                data = JSON.parse(event.data);
+            } catch (err) {
+                return;
+            }
             if (data.type === 'ping') return;
 
             // Handle different broadcast events
@@ -89,8 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         eventSource.onerror = (err) => {
-            console.warn("SSE connection interrupted. Reconnecting in 5 seconds...");
-            setTimeout(initRealtimeStream, 5000);
+            console.warn("SSE connection interrupted. Polling remains active.");
+            if (eventSource) {
+                eventSource.close();
+                eventSource = null;
+            }
         };
     }
 
@@ -208,11 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     async function loadGlobalCounters() {
         try {
-            const res = await fetch('/api/reservations/counters');
-            const data = await res.json();
-            if (!res.ok || data.success === false) {
-                throw new Error(data.details || data.error || "Failed to load operations counters.");
-            }
+            const data = await fetchJson('/api/reservations/counters', { timeoutMs: 12000 });
             if (data.success) {
                 state.counters = data.counters;
                 updateSidebarBadge();
@@ -260,15 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!activityContainer) return;
 
         try {
-            const res = await fetch('/api/reservations/logs/recent');
-            const resData = await res.json();
+            const resData = await fetchJson('/api/reservations/logs/recent', { timeoutMs: 12000 });
             if (resData.success && resData.logs) {
                 renderDashboardActivity(resData.logs);
             } else {
-                activityContainer.innerHTML = '<div class="text-center" style="padding:20px; color:var(--text-muted);">Failed to load activity logs.</div>';
+                activityContainer.innerHTML = '<div class="text-center" style="padding:20px; color:var(--text-muted);">No recent reservation activity yet.</div>';
             }
         } catch (e) {
-            activityContainer.innerHTML = '<div class="text-center" style="padding:20px; color:var(--text-muted);">Failed to contact server.</div>';
+            activityContainer.innerHTML = '<div class="text-center" style="padding:20px; color:var(--text-muted);">No recent reservation activity yet.</div>';
         }
     }
 
@@ -402,24 +403,82 @@ document.addEventListener('DOMContentLoaded', () => {
         loadInboxData();
     }
 
-    async function loadInboxDataSilently() {
-        let url = `/api/reservations?page=${state.page}&per_page=${state.perPage}&status=${encodeURIComponent(state.status)}&date_filter=${state.dateFilter}`;
-        if (state.search) url += `&search=${encodeURIComponent(state.search)}`;
-        if (state.startDate) url += `&start_date=${state.startDate}`;
-        if (state.endDate) url += `&end_date=${state.endDate}`;
+    function buildInboxUrl() {
+        const params = new URLSearchParams({
+            page: String(state.page),
+            per_page: String(state.perPage),
+            status: state.status,
+            date_filter: state.dateFilter
+        });
+        if (state.search) params.set('search', state.search);
+        if (state.startDate) params.set('start_date', state.startDate);
+        if (state.endDate) params.set('end_date', state.endDate);
+        return `/api/reservations?${params.toString()}`;
+    }
+
+    async function fetchJson(url, options = {}) {
+        const timeoutMs = options.timeoutMs || 15000;
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
         try {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                ...options,
+                signal: controller.signal,
+                headers: {
+                    'Accept': 'application/json',
+                    ...(options.headers || {})
+                }
+            });
             const rawBody = await res.text();
             let data = {};
             try {
                 data = rawBody ? JSON.parse(rawBody) : {};
             } catch (jsonErr) {
-                throw new Error(`Reservation inbox API returned HTTP ${res.status}: ${rawBody.slice(0, 240) || res.statusText}`);
+                throw new Error(`Expected JSON from ${url}, but received HTTP ${res.status}.`);
             }
             if (!res.ok || data.success === false) {
-                throw new Error(data.details || data.error || "Failed to sync reservation records.");
+                throw new Error(data.error || data.details || `Request failed with HTTP ${res.status}.`);
             }
+            return data;
+        } catch (err) {
+            if (err.name === 'AbortError') {
+                throw new Error("The reservations request timed out. Please check the Vercel environment variables and Supabase connectivity.");
+            }
+            throw err;
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    function normalizeReservation(item) {
+        return {
+            id: item && item.id,
+            name: (item && item.name) || 'Guest',
+            phone: (item && item.phone) || '',
+            guests: Number((item && item.guests) || 1),
+            date: (item && item.date) || '',
+            time: (item && item.time) || '',
+            special_request: (item && item.special_request) || '',
+            status: (item && item.status) || 'New'
+        };
+    }
+
+    function normalizeInboxPayload(data) {
+        const items = Array.isArray(data.items) ? data.items.map(normalizeReservation) : [];
+        return {
+            ...data,
+            items,
+            total_items: Number(data.total_items || items.length),
+            page: Number(data.page || state.page),
+            per_page: Number(data.per_page || state.perPage),
+            total_pages: Number(data.total_pages || 1)
+        };
+    }
+
+    async function loadInboxDataSilently() {
+        try {
+            const data = normalizeInboxPayload(await fetchJson(buildInboxUrl(), { timeoutMs: 12000 }));
 
             // Simple deep comparison to check if items changed before rendering
             const prevSerialized = JSON.stringify(state.reservations.map(r => ({ id: r.id, status: r.status })));
@@ -440,6 +499,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadInboxData() {
         const bodyContainer = document.getElementById('inboxListBody');
+        if (!bodyContainer) return;
         bodyContainer.innerHTML = `
             <div class="text-center" style="padding: 40px; color: var(--gold);">
                 <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 1.8rem; margin-bottom: 10px;"></i>
@@ -447,23 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        let url = `/api/reservations?page=${state.page}&per_page=${state.perPage}&status=${encodeURIComponent(state.status)}&date_filter=${state.dateFilter}`;
-        if (state.search) url += `&search=${encodeURIComponent(state.search)}`;
-        if (state.startDate) url += `&start_date=${state.startDate}`;
-        if (state.endDate) url += `&end_date=${state.endDate}`;
-
         try {
-            const res = await fetch(url);
-            const rawBody = await res.text();
-            let data = {};
-            try {
-                data = rawBody ? JSON.parse(rawBody) : {};
-            } catch (jsonErr) {
-                throw new Error(`Reservation inbox API returned HTTP ${res.status}: ${rawBody.slice(0, 240) || res.statusText}`);
-            }
-            if (!res.ok || data.success === false) {
-                throw new Error(data.details || data.error || "Failed to sync reservation records.");
-            }
+            const data = normalizeInboxPayload(await fetchJson(buildInboxUrl()));
 
             state.reservations = data.items || [];
             state.totalItems = data.total_items || 0;
@@ -483,11 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function loadInboxCountersOnly() {
         try {
-            const res = await fetch('/api/reservations/counters');
-            const data = await res.json();
-            if (!res.ok || data.success === false) {
-                throw new Error(data.details || data.error || "Failed to load inbox counters.");
-            }
+            const data = await fetchJson('/api/reservations/counters', { timeoutMs: 12000 });
             if (data.success) {
                 state.counters = data.counters;
                 updateInboxCountersUI();
@@ -619,13 +660,9 @@ document.addEventListener('DOMContentLoaded', () => {
         detailsContainer.style.opacity = '0.5';
 
         try {
-            const res = await fetch(`/api/reservations/${id}`);
-            const data = await res.json();
-            if (!res.ok || data.success === false) {
-                throw new Error(data.details || data.error || "Failed to fetch reservation details.");
-            }
+            const data = await fetchJson(`/api/reservations/${id}`, { timeoutMs: 12000 });
             if (data.success) {
-                renderReservationDetails(data.item);
+                await renderReservationDetails(normalizeReservation(data.item));
                 detailsContainer.style.opacity = '1';
                 
                 // Reload global count
@@ -636,6 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (e) {
             showToast(e.message || "Connection to server failed.", "error");
+            detailsContainer.style.opacity = '1';
         }
     }
 
@@ -646,7 +684,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('detailsSubmissionTime').textContent = `${formatDateLabel(item.date)} at ${item.time || '--'}`;
 
         // Core fields
-        document.getElementById('detailsPhone').innerHTML = `<a href="tel:${item.phone}" style="color:var(--gold); text-decoration:none;">${item.phone}</a>`;
+        const phoneNode = document.getElementById('detailsPhone');
+        phoneNode.textContent = '';
+        const phoneLink = document.createElement('a');
+        phoneLink.href = `tel:${String(item.phone || '').replace(/[^\d+]/g, '')}`;
+        phoneLink.style.color = 'var(--gold)';
+        phoneLink.style.textDecoration = 'none';
+        phoneLink.textContent = item.phone || '--';
+        phoneNode.appendChild(phoneLink);
         document.getElementById('detailsGuests').textContent = item.guests === 1 ? '1 Guest' : `${item.guests} Guests`;
         document.getElementById('detailsDate').textContent = formatDateLabel(item.date) + ` (${item.date})`;
         document.getElementById('detailsTime').textContent = item.time;
@@ -670,16 +715,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Load History Log Timeline
         try {
-            const res = await fetch(`/api/reservations/${item.id}/logs`);
-            const logData = await res.json();
-            if (!res.ok || logData.success === false) {
-                throw new Error(logData.details || logData.error || "Timeline logs query failed.");
-            }
+            const logData = await fetchJson(`/api/reservations/${item.id}/logs`, { timeoutMs: 8000 });
             if (logData.success && logData.logs) {
                 renderTimelineLogs(logData.logs);
             }
         } catch (e) {
             console.error("Timeline logs query failed:", e);
+            renderTimelineLogs([]);
         }
     }
 
@@ -730,10 +772,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (confirm("Are you sure you want to permanently delete this reservation? This cannot be undone.")) {
                     try {
-                        const res = await fetch(`/api/reservations/${state.selectedId}`, {
-                            method: 'DELETE'
+                        const data = await fetchJson(`/api/reservations/${state.selectedId}`, {
+                            method: 'DELETE',
+                            timeoutMs: 12000
                         });
-                        const data = await res.json();
                         if (data.success) {
                             showToast("Reservation deleted successfully.", "success");
                             
@@ -758,16 +800,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!state.selectedId) return;
 
         try {
-            const res = await fetch(`/api/reservations/${state.selectedId}`, {
+            const data = await fetchJson(`/api/reservations/${state.selectedId}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: newStatus })
+                body: JSON.stringify({ status: newStatus }),
+                timeoutMs: 12000
             });
-            const data = await res.json();
             
             if (data.success) {
                 showToast(`Status updated to ${newStatus}.`, "success");
-                renderReservationDetails(data.item);
+                await renderReservationDetails(normalizeReservation(data.item));
                 
                 // Update local list row text directly
                 const idx = state.reservations.findIndex(x => x.id === state.selectedId);

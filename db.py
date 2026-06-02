@@ -25,6 +25,7 @@ RESERVATION_FIELDS = {
     'is_read': 'INTEGER NOT NULL DEFAULT 0',
     'created_at': 'TEXT NOT NULL DEFAULT ""',
 }
+SUPABASE_RESERVATION_SELECT = 'id,name,phone,guests,date,time,special_request,status'
 
 if os.environ.get('VERCEL') and not os.path.exists(DB_FILE) and os.path.exists(BUNDLED_DB_FILE):
     shutil.copyfile(BUNDLED_DB_FILE, DB_FILE)
@@ -145,8 +146,6 @@ def _normalize_reservation(item):
     item['time'] = item.get('time') or ''
     item['special_request'] = item.get('special_request') or ''
     item['status'] = item.get('status') or 'New'
-    item['is_read'] = int(item.get('is_read', 1) or 0)
-    item['created_at'] = item.get('created_at') or datetime.datetime.now().isoformat()
     return item
 
 
@@ -297,12 +296,13 @@ def seed_if_empty():
 def get_all(collection_name, search_query=None, sort_col=None, sort_dir="ASC", page=1, per_page=10, category_filter=None, status_filter=None):
     if use_supabase():
         allowed_cols = ['id', 'name', 'phone', 'guests', 'date', 'time', 'special_request', 'status'] if collection_name == 'reservations' else ['id', 'name', 'slug', 'description', 'price', 'category', 'status']
+        select_cols = SUPABASE_RESERVATION_SELECT if collection_name == 'reservations' else '*'
         order_col = sort_col if sort_col in allowed_cols else 'id'
         order_dir = 'desc' if str(sort_dir).upper() == 'DESC' else 'asc'
         offset = (page - 1) * per_page
 
         params = [
-            'select=*',
+            f'select={select_cols}',
             f'order={order_col}.{order_dir}',
             f'limit={int(per_page)}',
             f'offset={int(offset)}',
@@ -395,7 +395,8 @@ def get_all(collection_name, search_query=None, sort_col=None, sort_dir="ASC", p
 
 def get_by_id(collection_name, item_id):
     if use_supabase():
-        query = f"select=*&id=eq.{int(item_id)}&limit=1"
+        select_cols = SUPABASE_RESERVATION_SELECT if collection_name == 'reservations' else '*'
+        query = f"select={select_cols}&id=eq.{int(item_id)}&limit=1"
         rows, _ = _supabase_request('GET', collection_name, query)
         if not rows:
             return None
@@ -736,7 +737,7 @@ def get_reservations_filtered(search_query=None, status_filter=None, date_filter
     if use_supabase():
         offset = (page - 1) * per_page
         params = [
-            'select=*',
+            f'select={SUPABASE_RESERVATION_SELECT}',
             'order=id.desc',
             f'limit={int(per_page)}',
             f'offset={int(offset)}',

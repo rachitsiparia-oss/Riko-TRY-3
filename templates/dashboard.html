@@ -29,7 +29,7 @@
                     <img src="/assets/riko_logo_circular.png" alt="Riko">
                 </div>
                 <div class="brand-info">
-                    <span class="brand-name">Riko Salon</span>
+                    <span class="brand-name">Riko Restaurant</span>
                     <span class="brand-role">CMS Control</span>
                 </div>
             </div>
@@ -460,10 +460,10 @@
                                 </div>
                                 <div class="settings-info-row">
                                     <span class="info-label">Password Storage:</span>
-                                    <span class="info-val text-warning-light"><i class="fa-solid fa-shield-halved"></i> Read from secure local `.env` configuration file. Excluded from code assets.</span>
+                                    <span class="info-val text-warning-light"><i class="fa-solid fa-shield-halved"></i> Read from secure environment variables. Excluded from code assets.</span>
                                 </div>
                                 <div class="settings-note" style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
-                                    <p>To change the admin password, please edit the <code>ADMIN_PASSWORD</code> key value directly inside the local <code>.env</code> project root file on the server host environment.</p>
+                                    <p>To change the admin password or Supabase connection, update <code>ADMIN_PASSWORD</code>, <code>SUPABASE_URL</code>, and <code>SUPABASE_SERVICE_ROLE_KEY</code> in Vercel Environment Variables, then redeploy.</p>
                                 </div>
                             </div>
                         </div>
@@ -639,7 +639,7 @@
     {% if current_view == 'menu_cms' %}
     <script src="/static/admin.js"></script>
     {% else %}
-    <script src="/static/admin_inbox.js"></script>
+    <script src="/static/admin_inbox.js?v=reservations-production-inbox-1"></script>
     {% endif %}
 </body>
 </html>
