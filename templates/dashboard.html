@@ -522,9 +522,11 @@
                                 <span>Preview Upload</span>
                             </div>
                             <div class="image-upload-inputs">
-                                <input type="file" id="add_{{ field.name }}" name="{{ field.name }}" class="image-file-input" accept=".jpg,.png,.webp,.jpeg" {% if field.required %}required{% endif %}>
+                                <input type="file" id="add_{{ field.name }}" name="{{ field.name }}" class="image-file-input" accept=".jpg,.png,.webp,.jpeg">
                                 <label for="add_{{ field.name }}" class="image-upload-label">Choose Image File</label>
-                                <span class="image-upload-specs">JPG, PNG, WEBP allowed.</span>
+                                <span class="image-upload-specs">JPG, PNG, WEBP allowed for local/server storage.</span>
+                                <input type="text" id="add_{{ field.name }}_text" name="{{ field.name }}_text" class="form-input" placeholder="https://... or assets/example.webp">
+                                <span class="image-upload-specs">For Vercel, paste a hosted image URL or committed asset path.</span>
                             </div>
                         </div>
                         {% endif %}
@@ -593,6 +595,8 @@
                         <input type="file" id="edit_{{ field.name }}" name="{{ field.name }}" class="image-file-input edit-image-upload-trigger" accept=".jpg,.png,.webp,.jpeg">
                         <label for="edit_{{ field.name }}" class="image-upload-label">Upload New Image</label>
                         <span class="image-upload-specs">Leave blank to keep existing image</span>
+                        <input type="text" id="edit_{{ field.name }}_text" name="{{ field.name }}_text" class="form-input edit-autosave-trigger" placeholder="https://... or assets/example.webp">
+                        <span class="image-upload-specs">Use hosted URLs or committed asset paths for Vercel.</span>
                     </div>
                 </div>
                 {% endif %}
@@ -637,7 +641,7 @@
     
     <!-- Admin Client script -->
     {% if current_view == 'menu_cms' %}
-    <script src="/static/admin.js"></script>
+    <script src="/static/admin.js?v=menu-supabase-create-1"></script>
     {% else %}
     <script src="/static/admin_inbox.js?v=reservations-production-inbox-1"></script>
     {% endif %}

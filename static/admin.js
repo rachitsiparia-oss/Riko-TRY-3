@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addNameInput = document.getElementById('add_name');
     const addSlugInput = document.getElementById('add_slug');
     const addImageInput = document.getElementById('add_image_url');
+    const addImageUrlInput = document.getElementById('add_image_url_text');
     const addImagePreviewBox = document.getElementById('add_image_preview_box');
 
     // Slide Panel / Edit refs
@@ -51,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const editNameInput = document.getElementById('edit_name');
     const editSlugInput = document.getElementById('edit_slug');
     const editImageInput = document.getElementById('edit_image_url');
+    const editImageUrlInput = document.getElementById('edit_image_url_text');
     const editImagePreviewBox = document.getElementById('edit_image_preview_box');
     const editImageCurrentSrc = document.getElementById('edit_image_current_src');
     const savingIndicator = document.getElementById('savingIndicator');
@@ -145,9 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const val = item[field.name];
                 
                 if (field.type === 'image') {
+                    const imgSrc = resolveImageSrc(val);
                     html += `
                         <td>
-                            <img src="/${val}" alt="${item.name}" class="table-img-preview rounded-preview" data-caption="${item.name}">
+                            <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(item.name)}" class="table-img-preview rounded-preview" data-caption="${escapeHtml(item.name)}">
                         </td>
                     `;
                 } else if (field.name === 'name') {
@@ -489,6 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
             <span>Preview Upload</span>
         `;
+        if (addImageUrlInput) addImageUrlInput.value = '';
         document.body.style.overflow = '';
     }
 
@@ -507,6 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
         addImageInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file) {
+                if (addImageUrlInput) addImageUrlInput.value = '';
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     addImagePreviewBox.innerHTML = `<img src="${e.target.result}" style="width:100%; height:100%; object-fit:cover;">`;
@@ -514,6 +519,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 reader.readAsDataURL(file);
             }
         });
+    }
+
+    if (addImageUrlInput) {
+        addImageUrlInput.addEventListener('input', debounce((e) => {
+            const src = resolveImageSrc(e.target.value.trim());
+            if (src) {
+                if (addImageInput) addImageInput.value = '';
+                addImagePreviewBox.innerHTML = `<img src="${escapeHtml(src)}" style="width:100%; height:100%; object-fit:cover;">`;
+            }
+        }, 250));
     }
 
     // Add Form Submit
@@ -531,14 +546,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 body: formData
             });
-            const data = await res.json();
+            const data = await parseJsonResponse(res);
             
             if (data.success) {
                 showToast("Item created successfully.", "success");
                 closeAddModal();
                 loadData();
             } else {
-                showToast(data.error || "Failed to create item", "error");
+                showToast(formatApiError(data, "Failed to create item"), "error");
             }
         } catch (err) {
             showToast("Network error occurred while saving.", "error");
@@ -568,7 +583,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!input) return;
 
             if (field.type === 'image') {
-                editImageCurrentSrc.src = `/${val}`;
+                editImageCurrentSrc.src = resolveImageSrc(val);
+                if (editImageUrlInput) editImageUrlInput.value = val || '';
             } else {
                 input.value = val;
             }
@@ -633,6 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show preview instantly
             const file = editImageInput.files[0];
             if (file) {
+                if (editImageUrlInput) editImageUrlInput.value = '';
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     editImageCurrentSrc.src = e.target.result;
@@ -644,6 +661,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (editImageUrlInput) {
+        editImageUrlInput.addEventListener('input', debounce((e) => {
+            const src = resolveImageSrc(e.target.value.trim());
+            if (src && editImageCurrentSrc) {
+                if (editImageInput) editImageInput.value = '';
+                editImageCurrentSrc.src = src;
+            }
+        }, 250));
+    }
+
     async function triggerAutoSave() {
         const id = document.getElementById('edit_id').value;
         const formData = new FormData(editItemForm);
@@ -653,7 +680,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST', // Use POST for multipart form update compatibility
                 body: formData
             });
-            const data = await res.json();
+            const data = await parseJsonResponse(res);
             
             if (data.success) {
                 showSavingStatus('success');
@@ -665,8 +692,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     updateTableRow(data.item);
                 }
             } else {
-                showSavingStatus('error', data.error);
-                showToast(data.error || "Failed to auto-save changes", "error");
+                const message = formatApiError(data, "Failed to auto-save changes");
+                showSavingStatus('error', message);
+                showToast(message, "error");
             }
         } catch (err) {
             showSavingStatus('error', 'Network connection error');
@@ -682,7 +710,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (field.type === 'image') {
                 const img = tr.querySelector('.table-img-preview');
-                if (img) img.src = `/${val}`;
+                if (img) img.src = resolveImageSrc(val);
             } else if (field.name === 'name') {
                 const td = tr.querySelector('.edit-trigger');
                 if (td && td.tagName === 'TD') td.textContent = val;
@@ -819,6 +847,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // HELPER UTILITIES
     // ==========================================
+    function resolveImageSrc(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+        if (/^https?:\/\//i.test(raw)) return raw;
+        return `/${raw.replace(/^\/+/, '')}`;
+    }
+
     function slugify(text) {
         return text
             .toString()
@@ -839,6 +874,32 @@ document.addEventListener('DOMContentLoaded', () => {
              .replace(/>/g, "&gt;")
              .replace(/"/g, "&quot;")
              .replace(/'/g, "&#039;");
+    }
+
+    function formatApiError(data, fallback) {
+        if (data && data.fields) {
+            const messages = Object.values(data.fields).filter(Boolean);
+            if (messages.length) return messages.join(' ');
+        }
+        return (data && (data.error || data.details)) || fallback;
+    }
+
+    async function parseJsonResponse(res) {
+        const rawBody = await res.text();
+        let data = {};
+        try {
+            data = rawBody ? JSON.parse(rawBody) : {};
+        } catch (err) {
+            return {
+                success: false,
+                error: `Server returned HTTP ${res.status}. Please check the Vercel function logs for the exact error.`
+            };
+        }
+        if (!res.ok && data.success !== false) {
+            data.success = false;
+            data.error = data.error || `Server returned HTTP ${res.status}.`;
+        }
+        return data;
     }
 
     function showToast(message, type = "success") {

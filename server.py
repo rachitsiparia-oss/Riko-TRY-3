@@ -251,7 +251,7 @@ def load_seed_menu_collection(search_query=None, sort_col='id', sort_dir='ASC', 
         "warning": "Loaded bundled menu seed because the configured database query failed."
     }
 
-def validate_menu_item(form_data, has_file, is_update=False):
+def validate_menu_item(form_data, has_image_ref, is_update=False):
     """Server-side validation for menu items fields."""
     errors = {}
     
@@ -293,9 +293,9 @@ def validate_menu_item(form_data, has_file, is_update=False):
         if status not in ["Published", "Draft"]:
             errors['status'] = "Status must be either 'Published' or 'Draft'."
 
-    # Image upload check
-    if not is_update and not has_file:
-        errors['image_url'] = "Dish Image is required."
+    # Image reference check. In production, Vercel should store a hosted image URL/path in Supabase.
+    if not is_update and not has_image_ref:
+        errors['image_url'] = "Dish image file or hosted image URL is required."
 
     return errors
 
@@ -313,6 +313,9 @@ def slugify(text):
 # ==========================================
 def process_and_save_image(file, slug):
     """Validate, optimize (resize and compress), convert to WebP format, and write to uploads/."""
+    if os.environ.get('VERCEL'):
+        return None, "File uploads are not supported on Vercel. Paste a hosted image URL or committed asset path instead."
+
     try:
         from PIL import Image
     except ImportError:
@@ -332,7 +335,10 @@ def process_and_save_image(file, slug):
 
     # Set up uploads dir
     uploads_dir = os.path.join(os.path.dirname(__file__), 'uploads')
-    os.makedirs(uploads_dir, exist_ok=True)
+    try:
+        os.makedirs(uploads_dir, exist_ok=True)
+    except OSError as e:
+        return None, f"Upload directory is not writable: {str(e)}"
     
     # Save standard optimized filename (e.g. slug_timestamp.webp)
     target_filename = f"{slug}_{int(time.time())}.webp"
@@ -368,6 +374,22 @@ def process_and_save_image(file, slug):
         return f"uploads/{target_filename}", None
     except Exception as e:
         return None, f"Image compression error: {str(e)}"
+
+def normalize_image_reference(value):
+    """Return a safe image URL/path for database storage, or an empty string if invalid."""
+    image_ref = sanitize_input(value or '').strip()
+    if not image_ref:
+        return ''
+
+    parsed = urlsplit(image_ref)
+    if parsed.scheme in ('http', 'https') and parsed.netloc:
+        return image_ref
+
+    local_ref = image_ref.lstrip('/')
+    if local_ref.startswith(('assets/', 'uploads/', 'static/')):
+        return local_ref
+
+    return ''
 
 # CORS Support for static preview tools (like Live Server running on port 5500)
 @app.after_request
@@ -593,129 +615,164 @@ def api_get_item(collection_name, item_id):
 @admin_required
 def api_create_item(collection_name):
     """Create a new collection record, generating slugs and optimizing uploaded image files."""
-    has_file = 'image_url' in request.files and request.files['image_url'].filename != ''
-    
-    # 1. Server-side validation
-    errors = validate_menu_item(request.form, has_file, is_update=False)
-    if errors:
-        return jsonify({"success": False, "error": "Validation failed.", "fields": errors}), 400
+    try:
+        has_file = 'image_url' in request.files and request.files['image_url'].filename != ''
+        image_url_text = request.form.get('image_url_text', '').strip()
+        has_image_ref = has_file or bool(image_url_text)
+        
+        # 1. Server-side validation
+        errors = validate_menu_item(request.form, has_image_ref, is_update=False)
+        if errors:
+            return jsonify({"success": False, "error": "Validation failed.", "fields": errors}), 400
 
-    # 2. Extract and Sanitize Inputs
-    name = sanitize_input(request.form['name'])
-    description = sanitize_input(request.form['description'])
-    price = float(request.form['price'])
-    category = request.form['category']
-    status = request.form.get('status', 'Published')
-    
-    # Auto-generate unique slug
-    base_slug = slugify(name)
-    slug = base_slug
-    counter = 1
-    # Ensure slug uniqueness in database table
-    while db.get_by_slug(collection_name, slug) is not None:
-        slug = f"{base_slug}-{counter}"
-        counter += 1
+        # 2. Extract and Sanitize Inputs
+        name = sanitize_input(request.form['name'])
+        description = sanitize_input(request.form['description'])
+        price = float(request.form['price'])
+        category = request.form['category']
+        status = request.form.get('status', 'Published')
+        
+        # Auto-generate unique slug
+        base_slug = slugify(name)
+        slug = base_slug
+        counter = 1
+        # Ensure slug uniqueness in database table
+        while db.get_by_slug(collection_name, slug) is not None:
+            slug = f"{base_slug}-{counter}"
+            counter += 1
 
-    # 3. Secure and Compress Upload Image
-    file = request.files['image_url']
-    image_path, upload_err = process_and_save_image(file, slug)
-    if upload_err:
-        return jsonify({"success": False, "error": upload_err}), 400
+        # 3. Resolve image reference. Prefer hosted URLs/paths for Vercel.
+        if image_url_text:
+            image_path = normalize_image_reference(image_url_text)
+            if not image_path:
+                return jsonify({
+                    "success": False,
+                    "error": "Image URL must be a full http(s) URL or a project path beginning with assets/, uploads/, or static/."
+                }), 400
+        elif has_file:
+            file = request.files['image_url']
+            image_path, upload_err = process_and_save_image(file, slug)
+            if upload_err:
+                return jsonify({"success": False, "error": upload_err}), 400
 
-    # 4. Insert into database
-    data = {
-        "name": name,
-        "slug": slug,
-        "description": description,
-        "price": price,
-        "category": category,
-        "image_url": image_path,
-        "status": status
-    }
-    
-    last_id, db_err = db.insert_item(collection_name, data)
-    if db_err:
-        return jsonify({"success": False, "error": f"Database insertion failed: {db_err}"}), 500
+        # 4. Insert into database
+        data = {
+            "name": name,
+            "slug": slug,
+            "description": description,
+            "price": price,
+            "category": category,
+            "image_url": image_path,
+            "status": status
+        }
+        
+        last_id, db_err = db.insert_item(collection_name, data)
+        if db_err:
+            return jsonify({"success": False, "error": f"Database insertion failed: {db_err}"}), 500
 
-    data["id"] = last_id
-    return jsonify({"success": True, "item": data}), 201
+        created_item = db.get_by_id(collection_name, last_id) if last_id else None
+        return jsonify({"success": True, "item": created_item or data}), 201
+    except Exception as exc:
+        print(f"Collection create failed for {collection_name}: {exc}")
+        return jsonify({
+            "success": False,
+            "error": "Collection create failed. Check Supabase menu_items columns and Vercel environment variables.",
+            "details": str(exc)
+        }), 500
 
 @app.route('/api/collections/<collection_name>/<int:item_id>', methods=['POST'])
 @admin_required
 def api_update_item(collection_name, item_id):
     """Update details of an existing collection item with instant response support."""
-    item = db.get_by_id(collection_name, item_id)
-    if not item:
-        return jsonify({"success": False, "error": "Item not found."}), 404
+    try:
+        item = db.get_by_id(collection_name, item_id)
+        if not item:
+            return jsonify({"success": False, "error": "Item not found."}), 404
 
-    has_file = 'image_url' in request.files and request.files['image_url'].filename != ''
-    
-    # 1. Validation check
-    errors = validate_menu_item(request.form, has_file, is_update=True)
-    if errors:
-        return jsonify({"success": False, "error": "Validation failed.", "fields": errors}), 400
-
-    # 2. Extract modified fields
-    update_data = {}
-    
-    # If Name changed, regenerate slug
-    if 'name' in request.form:
-        new_name = sanitize_input(request.form['name'])
-        if new_name != item['name']:
-            update_data['name'] = new_name
-            # Rebuild slug
-            base_slug = slugify(new_name)
-            slug = base_slug
-            counter = 1
-            while True:
-                existing = db.get_by_slug(collection_name, slug)
-                if existing is None or existing['id'] == item_id:
-                    break
-                slug = f"{base_slug}-{counter}"
-                counter += 1
-            update_data['slug'] = slug
-
-    if 'description' in request.form:
-        update_data['description'] = sanitize_input(request.form['description'])
+        has_file = 'image_url' in request.files and request.files['image_url'].filename != ''
+        image_url_text = request.form.get('image_url_text', '').strip()
         
-    if 'price' in request.form:
-        update_data['price'] = float(request.form['price'])
-        
-    if 'category' in request.form:
-        update_data['category'] = request.form['category']
-        
-    if 'status' in request.form:
-        update_data['status'] = request.form['status']
+        # 1. Validation check
+        errors = validate_menu_item(request.form, has_file or bool(image_url_text), is_update=True)
+        if errors:
+            return jsonify({"success": False, "error": "Validation failed.", "fields": errors}), 400
 
-    # 3. Handle image replacement upload
-    if has_file:
-        file = request.files['image_url']
-        current_slug = update_data.get('slug', item['slug'])
-        image_path, upload_err = process_and_save_image(file, current_slug)
-        if upload_err:
-            return jsonify({"success": False, "error": upload_err}), 400
+        # 2. Extract modified fields
+        update_data = {}
+        
+        # If Name changed, regenerate slug
+        if 'name' in request.form:
+            new_name = sanitize_input(request.form['name'])
+            if new_name != item['name']:
+                update_data['name'] = new_name
+                # Rebuild slug
+                base_slug = slugify(new_name)
+                slug = base_slug
+                counter = 1
+                while True:
+                    existing = db.get_by_slug(collection_name, slug)
+                    if existing is None or existing['id'] == item_id:
+                        break
+                    slug = f"{base_slug}-{counter}"
+                    counter += 1
+                update_data['slug'] = slug
+
+        if 'description' in request.form:
+            update_data['description'] = sanitize_input(request.form['description'])
             
-        update_data['image_url'] = image_path
-        
-        # Optional cleanup: remove old uploads from file system
-        old_path = os.path.join(os.path.dirname(__file__), item['image_url'])
-        # Avoid deleting default assets/ images if they are referenced
-        if os.path.exists(old_path) and 'uploads/' in item['image_url']:
-            try:
-                os.remove(old_path)
-            except OSError:
-                pass
+        if 'price' in request.form:
+            update_data['price'] = float(request.form['price'])
+            
+        if 'category' in request.form:
+            update_data['category'] = request.form['category']
+            
+        if 'status' in request.form:
+            update_data['status'] = request.form['status']
 
-    if not update_data:
-        return jsonify({"success": True, "item": item})
+        # 3. Handle image replacement upload or hosted URL/path update
+        if image_url_text:
+            image_path = normalize_image_reference(image_url_text)
+            if not image_path:
+                return jsonify({
+                    "success": False,
+                    "error": "Image URL must be a full http(s) URL or a project path beginning with assets/, uploads/, or static/."
+                }), 400
+            update_data['image_url'] = image_path
+        elif has_file:
+            file = request.files['image_url']
+            current_slug = update_data.get('slug', item['slug'])
+            image_path, upload_err = process_and_save_image(file, current_slug)
+            if upload_err:
+                return jsonify({"success": False, "error": upload_err}), 400
+                
+            update_data['image_url'] = image_path
+            
+            # Optional cleanup: remove old uploads from file system
+            old_path = os.path.join(os.path.dirname(__file__), item['image_url'])
+            # Avoid deleting default assets/ images if they are referenced
+            if os.path.exists(old_path) and 'uploads/' in item['image_url']:
+                try:
+                    os.remove(old_path)
+                except OSError:
+                    pass
 
-    # 4. Save updates to DB
-    ok, db_err = db.update_item(collection_name, item_id, update_data)
-    if not ok:
-        return jsonify({"success": False, "error": db_err}), 500
+        if not update_data:
+            return jsonify({"success": True, "item": item})
 
-    updated_item = db.get_by_id(collection_name, item_id)
-    return jsonify({"success": True, "item": updated_item})
+        # 4. Save updates to DB
+        ok, db_err = db.update_item(collection_name, item_id, update_data)
+        if not ok:
+            return jsonify({"success": False, "error": db_err}), 500
+
+        updated_item = db.get_by_id(collection_name, item_id)
+        return jsonify({"success": True, "item": updated_item})
+    except Exception as exc:
+        print(f"Collection update failed for {collection_name}/{item_id}: {exc}")
+        return jsonify({
+            "success": False,
+            "error": "Collection update failed. Check Supabase menu_items columns and Vercel environment variables.",
+            "details": str(exc)
+        }), 500
 
 @app.route('/api/collections/<collection_name>/<int:item_id>', methods=['PATCH'])
 @admin_required
